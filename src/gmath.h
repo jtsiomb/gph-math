@@ -3,5 +3,10 @@
 
 #include "vector.h"
 #include "matrix.h"
+#include "ray.h"
+
+#ifndef GPH_NAMESPACE
+using namespace gph;
+#endif
 
 #endif	// GMATH_H_

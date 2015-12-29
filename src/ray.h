@@ -11,7 +11,7 @@ public:
 	Vector3 origin, dir;
 
 	Ray() : dir(0, 0, 1) {}
-	Ray(const Vector3 &o, const Vector3 &d) : o(origin), d(dir) {}
+	Ray(const Vector3 &o, const Vector3 &d) : origin(o), dir(d) {}
 };
 
 inline Ray operator *(const Ray &r, const Matrix4x4 &m)
@@ -20,7 +20,7 @@ inline Ray operator *(const Ray &r, const Matrix4x4 &m)
 	up[0][3] = up[1][3] = up[2][3] = up[3][0] = up[3][1] = up[3][2] = 0.0;
 	up[3][3] = 1.0;
 
-	return Ray(origin * m, dir * up);
+	return Ray(r.origin * m, r.dir * up);
 }
 
 inline Ray operator *(const Matrix4x4 &m, const Ray &r)
@@ -29,7 +29,7 @@ inline Ray operator *(const Matrix4x4 &m, const Ray &r)
 	up[0][3] = up[1][3] = up[2][3] = up[3][0] = up[3][1] = up[3][2] = 0.0;
 	up[3][3] = 1.0;
 
-	return Ray(m * origin, m * dir);
+	return Ray(m * r.origin, m * r.dir);
 }
 
 
@@ -49,6 +49,6 @@ inline Ray refract(const Ray &ray, const Vector3 &n, float from_ior, float to_io
 }
 
 
-}
+}	// namespace gph
 
 #endif	// GMATH_RAY_H_

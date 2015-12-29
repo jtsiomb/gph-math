@@ -1,16 +1,3 @@
-#include <math.h>
-
-namespace gph {
-
-#undef GPH_SWIZZLE2
-#undef GPH_SWIZZLE3
-#undef GPH_SWIZZLE4
-#define GPH_SWIZZLE2(T, a, b)		inline Vector2 T::a##b() const { return Vector2(a, b); }
-#define GPH_SWIZZLE3(T, a, b, c)	inline Vector3 T::a##b##c() const { return Vector3(a, b, c); }
-#define GPH_SWIZZLE4(T, a, b, c, d)	inline Vector4 T::a##b##c##d() const { return Vector4(a, b, c, d); }
-
-// ---- Vector3 ----
-
 inline void Vector3::normalize()
 {
 	float len = (float)sqrt(x * x + y * y + z * z);
@@ -236,57 +223,3 @@ inline Vector3 rotate(const Vector3 &v, const Vector3 &euler)
 {
 	return v;	// TODO
 }
-
-
-GPH_VEC3_SWIZZLE
-
-// ---- Vector4 ----
-
-
-inline void Vector4::normalize()
-{
-	float len = (float)sqrt(x * x + y * y + z * z + w * w);
-	if(len != 0.0f) {
-		x /= len;
-		y /= len;
-		z /= len;
-		w /= len;
-	}
-}
-
-inline float &Vector4::operator[] (int idx)
-{
-	return idx == 0 ? x : (idx == 1 ? y : (idx == 2 ? z : w));
-}
-
-inline const float &Vector4::operator[] (int idx) const
-{
-	return idx == 0 ? x : (idx == 1 ? y : (idx == 2 ? z : w));
-}
-
-GPH_VEC4_SWIZZLE
-
-// ---- Vector2 ----
-
-inline void Vector2::normalize()
-{
-	float len = (float)sqrt(x * x + y * y);
-	if(len != 0.0f) {
-		x /= len;
-		y /= len;
-	}
-}
-
-inline float &Vector2::operator[] (int idx)
-{
-	return idx == 0 ? x : y;
-}
-
-inline const float &Vector2::operator[] (int idx) const
-{
-	return idx == 0 ? x : y;
-}
-
-GPH_VEC2_SWIZZLE
-
-}	// namespace gph

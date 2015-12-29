@@ -12,9 +12,10 @@ rootdir ?= .
 ccsrc = $(wildcard $(rootdir)/src/*.cc)
 obj = $(ccsrc:.cc=.o) $(csrc:.c=.o)
 dep = $(obj:.o=.d)
+def = -DGPH_NAMESPACE
 
-CFLAGS = $(warn_flags) $(opt_flags) $(dbg_flags) $(pic)
-CXXFLAGS = $(warn_flags) $(opt_flags) $(dbg_flags) $(pic)
+CFLAGS = $(warn_flags) $(opt_flags) $(dbg_flags) $(pic) $(def)
+CXXFLAGS = $(warn_flags) $(opt_flags) $(dbg_flags) $(pic) $(def)
 
 sys = $(shell uname -s | sed 's/MINGW.*/MINGW/')
 ifeq ($(sys), Darwin)
