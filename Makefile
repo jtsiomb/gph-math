@@ -74,8 +74,8 @@ install: $(alib) $(solib)
 	cp $(solib) $(DESTDIR)$(PREFIX)/lib/$(solib)
 	[ -n "$(soname)" ] && \
 		rm -f $(DESTDIR)$(PREFIX)/lib/$(soname) $(DESTDIR)$(PREFIX)/lib/$(ldname) && \
-		cp $(soname) $(DESTDIR)$(PREFIX)/lib/$(soname) && \
-		cp $(ldname) $(DESTDIR)$(PREFIX)/lib/$(ldname) || true
+		cp -a $(soname) $(DESTDIR)$(PREFIX)/lib/$(soname) && \
+		cp -a $(ldname) $(DESTDIR)$(PREFIX)/lib/$(ldname) || true
 
 .PHONY: uninstall
 uninstall:
