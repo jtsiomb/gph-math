@@ -227,7 +227,7 @@ inline Vector4 major(const Vector4 &v)
 
 inline int major_idx(const Vector4 &v)
 {
-	if(fabs(v.x) >= fabs(v.y) && fabs(v.x) >= fabs(v.z) && fabs(v.x >= v.w)) {
+	if(fabs(v.x) >= fabs(v.y) && fabs(v.x) >= fabs(v.z) && fabs(v.x) >= fabs(v.w)) {
 		return 0;
 	}
 	if(fabs(v.y) >= fabs(v.z) && fabs(v.y) >= fabs(v.w)) {

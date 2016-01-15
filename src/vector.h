@@ -71,6 +71,48 @@ public:
 	GPH_VEC4_SWIZZLE
 };
 
+// ---- Vector2 functions ----
+inline Vector2 operator -(const Vector2 &v);
+inline Vector2 operator +(const Vector2 &a, const Vector2 &b);
+inline Vector2 operator -(const Vector2 &a, const Vector2 &b);
+inline Vector2 operator *(const Vector2 &a, const Vector2 &b);
+inline Vector2 operator /(const Vector2 &a, const Vector2 &b);
+inline Vector2 operator *(const Vector2 &v, float s);
+inline Vector2 operator *(float s, const Vector2 &v);
+inline Vector2 operator /(const Vector2 &v, float s);
+inline Vector2 operator /(float s, const Vector2 &v);
+inline Vector2 &operator +=(Vector2 &a, const Vector2 &b);
+inline Vector2 &operator -=(Vector2 &a, const Vector2 &b);
+inline Vector2 &operator *=(Vector2 &a, const Vector2 &b);
+inline Vector2 &operator /=(Vector2 &a, const Vector2 &b);
+inline Vector2 &operator *=(Vector2 &v, float s);
+inline Vector2 &operator /=(Vector2 &v, float s);
+
+Vector2 operator *(const Vector2 &v, const Matrix4x4 &m);
+Vector2 operator *(const Matrix4x4 &m, const Vector2 &v);
+
+inline bool operator ==(const Vector2 &a, const Vector2 &b);
+inline bool operator !=(const Vector2 &a, const Vector2 &b);
+
+inline float dot(const Vector2 &a, const Vector2 &b);
+inline float length(const Vector2 &v);
+inline float length_sq(const Vector2 &v);
+inline Vector2 normalize(const Vector2 &v);
+
+inline Vector2 reflect(const Vector2 &v, const Vector2 &n);
+inline Vector2 refract(const Vector2 &v, const Vector2 &n, float ior);
+inline Vector2 refract(const Vector2 &v, const Vector2 &n, float from_ior, float to_ior);
+
+inline float distance(const Vector2 &a, const Vector2 &b);
+inline float distance_sq(const Vector2 &a, const Vector2 &b);
+inline Vector2 faceforward(const Vector2 &n, const Vector2 &vi, const Vector2 &ng);
+
+inline Vector2 major(const Vector2 &v);
+inline int major_idx(const Vector2 &v);
+inline Vector2 proj_axis(const Vector2 &v, const Vector2 &axis);
+
+inline Vector2 rotate(const Vector2 &v, float angle);
+
 // ---- Vector3 functions ----
 inline Vector3 operator -(const Vector3 &v);
 inline Vector3 operator +(const Vector3 &a, const Vector3 &b);

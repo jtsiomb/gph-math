@@ -10,6 +10,7 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef GMATH_MATRIX_H_
 #define GMATH_MATRIX_H_
 
+#include <stdio.h>
 #include <string.h>
 #include "vector.h"
 
@@ -51,6 +52,14 @@ public:
 		m[3][0] = v3.x; m[3][1] = v3.y; m[3][2] = v3.z; m[3][3] = v3.w;
 	}
 
+	Matrix4x4(const Vector3 &v0, const Vector3 &v1, const Vector3 &v2, const Vector3 &v3 = Vector3(0, 0, 0))
+	{
+		m[0][0] = v0.x; m[0][1] = v0.y; m[0][2] = v0.z; m[0][3] = 0.0f;
+		m[1][0] = v1.x; m[1][1] = v1.y; m[1][2] = v1.z; m[1][3] = 0.0f;
+		m[2][0] = v2.x; m[2][1] = v2.y; m[2][2] = v2.z; m[2][3] = 0.0f;
+		m[3][0] = v3.x; m[3][1] = v3.y; m[3][2] = v3.z; m[3][3] = 1.0f;
+	}
+
 	float *operator [](int idx)
 	{
 		return m[idx];
@@ -59,6 +68,82 @@ public:
 	const float *operator [](int idx) const
 	{
 		return m[idx];
+	}
+
+	void set_row(int idx, const Vector3 &v)
+	{
+		m[idx][0] = v.x;
+		m[idx][1] = v.y;
+		m[idx][2] = v.z;
+		m[idx][3] = 0.0f;
+	}
+
+	void set_row(int idx, const Vector4 &v)
+	{
+		m[idx][0] = v.x;
+		m[idx][1] = v.y;
+		m[idx][2] = v.z;
+		m[idx][3] = v.w;
+	}
+
+	void set_column(int idx, const Vector3 &v)
+	{
+		m[0][idx] = v.x;
+		m[1][idx] = v.y;
+		m[2][idx] = v.z;
+		m[3][idx] = 0.0f;
+	}
+
+	void set_column(int idx, const Vector4 &v)
+	{
+		m[0][idx] = v.x;
+		m[1][idx] = v.y;
+		m[2][idx] = v.z;
+		m[3][idx] = v.w;
+	}
+
+	Vector4 get_row(int idx) const
+	{
+		return Vector4(m[idx][0], m[idx][1], m[idx][2], m[idx][3]);
+	}
+
+	Vector3 get_row3(int idx) const
+	{
+		return Vector3(m[idx][0], m[idx][1], m[idx][2]);
+	}
+
+	Vector4 get_column(int idx) const
+	{
+		return Vector4(m[0][idx], m[1][idx], m[2][idx], m[3][idx]);
+	}
+
+	Vector3 get_column3(int idx) const
+	{
+		return Vector3(m[0][idx], m[1][idx], m[2][idx]);
+	}
+
+	Matrix4x4 upper3x3() const
+	{
+		return Matrix4x4(get_row3(0), get_row3(1), get_row3(2));
+	}
+
+	void transpose()
+	{
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<i; j++) {
+				float tmp = m[i][j];
+				m[i][j] = m[j][i];
+				m[j][i] = tmp;
+			}
+		}
+	}
+
+	void print(FILE *fp = stdout)
+	{
+		for(int i=0; i<4; i++) {
+			fprintf(fp, "[ %4.4g %4.4g %4.4g %4.4g ]\n", m[i][0], m[i][1], m[i][2], m[i][3]);
+		}
+		fputc('\n', fp);
 	}
 };
 

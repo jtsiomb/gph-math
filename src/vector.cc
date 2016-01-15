@@ -12,10 +12,31 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
+// ---- Vector2 ----
+
 Vector2::Vector2(const Vector3 &v)
 	: x(v.x), y(v.y)
 {
 }
+
+
+Vector2 operator *(const Vector2 &v, const Matrix4x4 &m)
+{
+	// essentially Vector4(v.x, v.y, 0, 1) * m
+	float x = v.x * m[0][0] + v.y * m[0][1] + m[0][3];
+	float y = v.x * m[1][0] + v.y * m[1][1] + m[1][3];
+	return Vector2(x, y);
+}
+
+Vector2 operator *(const Matrix4x4 &m, const Vector2 &v)
+{
+	// essentially m * Vector4(v.x, v.y, 0, 1)
+	float x = m[0][0] * v.x + m[1][0] * v.y + m[3][0];
+	float y = m[0][1] * v.x + m[1][1] * v.y + m[3][1];
+	return Vector2(x, y);
+}
+
+
 
 // ---- Vector3 ----
 
