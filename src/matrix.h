@@ -11,7 +11,6 @@ replace this paragraph with the full contents of the LICENSE file.
 #define GMATH_MATRIX_H_
 
 #include <stdio.h>
-#include <string.h>
 #include "vector.h"
 
 namespace gph {
@@ -23,129 +22,98 @@ private:
 public:
 	static Matrix4x4 identity;
 
-	Matrix4x4()
-	{
-		memcpy((float*)m, (const float*)identity.m, 16 * sizeof(float));
-	}
-
-	Matrix4x4(const float *m)
-	{
-		memcpy((float*)this->m, (const float*)m, 16 * sizeof(float));
-	}
-
-	Matrix4x4(float m00, float m01, float m02, float m03,
+	inline Matrix4x4();
+	inline Matrix4x4(const float *m);
+	inline Matrix4x4(float m00, float m01, float m02, float m03,
 			float m10, float m11, float m12, float m13,
 			float m20, float m21, float m22, float m23,
-			float m30, float m31, float m32, float m33)
-	{
-		m[0][0] = m00; m[0][1] = m01; m[0][2] = m02; m[0][3] = m03;
-		m[1][0] = m10; m[1][1] = m11; m[1][2] = m12; m[1][3] = m13;
-		m[2][0] = m20; m[2][1] = m21; m[2][2] = m22; m[2][3] = m23;
-		m[3][0] = m30; m[3][1] = m31; m[3][2] = m32; m[3][3] = m33;
-	}
+			float m30, float m31, float m32, float m33);
+	inline Matrix4x4(const Vector4 &v0, const Vector4 &v1, const Vector4 &v2, const Vector4 &v3);
+	inline Matrix4x4(const Vector3 &v0, const Vector3 &v1, const Vector3 &v2, const Vector3 &v3 = Vector3(0, 0, 0));
 
-	Matrix4x4(const Vector4 &v0, const Vector4 &v1, const Vector4 &v2, const Vector4 &v3)
-	{
-		m[0][0] = v0.x; m[0][1] = v0.y; m[0][2] = v0.z; m[0][3] = v0.w;
-		m[1][0] = v1.x; m[1][1] = v1.y; m[1][2] = v1.z; m[1][3] = v1.w;
-		m[2][0] = v2.x; m[2][1] = v2.y; m[2][2] = v2.z; m[2][3] = v2.w;
-		m[3][0] = v3.x; m[3][1] = v3.y; m[3][2] = v3.z; m[3][3] = v3.w;
-	}
+	inline float *operator [](int idx);
+	inline const float *operator [](int idx) const;
 
-	Matrix4x4(const Vector3 &v0, const Vector3 &v1, const Vector3 &v2, const Vector3 &v3 = Vector3(0, 0, 0))
-	{
-		m[0][0] = v0.x; m[0][1] = v0.y; m[0][2] = v0.z; m[0][3] = 0.0f;
-		m[1][0] = v1.x; m[1][1] = v1.y; m[1][2] = v1.z; m[1][3] = 0.0f;
-		m[2][0] = v2.x; m[2][1] = v2.y; m[2][2] = v2.z; m[2][3] = 0.0f;
-		m[3][0] = v3.x; m[3][1] = v3.y; m[3][2] = v3.z; m[3][3] = 1.0f;
-	}
+	inline void set_row(int idx, const Vector3 &v);
+	inline void set_row(int idx, const Vector4 &v);
+	inline void set_column(int idx, const Vector3 &v);
+	inline void set_column(int idx, const Vector4 &v);
+	inline Vector4 get_row(int idx) const;
+	inline Vector3 get_row3(int idx) const;
+	inline Vector4 get_column(int idx) const;
+	inline Vector3 get_column3(int idx) const;
 
-	float *operator [](int idx)
-	{
-		return m[idx];
-	}
+	inline Matrix4x4 upper3x3() const;
 
-	const float *operator [](int idx) const
-	{
-		return m[idx];
-	}
+	inline void transpose();
+	inline void inverse();
 
-	void set_row(int idx, const Vector3 &v)
-	{
-		m[idx][0] = v.x;
-		m[idx][1] = v.y;
-		m[idx][2] = v.z;
-		m[idx][3] = 0.0f;
-	}
+	/* translation/rotation/scaling functions construct a transformation
+	 * matrix of the appropriate type, discarding any previous contents
+	 */
+	inline void translation(float x, float y, float z);
+	inline void translation(const Vector3 &v);
+	inline void scaling(float s);
+	inline void scaling(float x, float y, float z);
+	inline void scaling(const Vector3 &v);
+	// fixed axis rotation
+	inline void rotation_x(float angle);
+	inline void rotation_y(float angle);
+	inline void rotation_z(float angle);
+	// axis-angle rotation
+	inline void rotation(float angle, float x, float y, float z);
+	inline void rotation(float angle, const Vector3 &axis);
+	// euler angles rotation
+	inline void rotation(float x, float y, float z);
+	inline void rotation(const Vector3 &euler);
+	// rotation by quaternion
+	inline void rotation(const Quaternion &q);
 
-	void set_row(int idx, const Vector4 &v)
-	{
-		m[idx][0] = v.x;
-		m[idx][1] = v.y;
-		m[idx][2] = v.z;
-		m[idx][3] = v.w;
-	}
+	/* translate/rotate/scale functions construct a temporary
+	 * transformation matrix of the appropriate type, and multiply
+	 * it to this matrix
+	 */
+	inline void translate(float x, float y, float z);
+	inline void translate(const Vector3 &v);
+	inline void scale(float s);
+	inline void scale(float x, float y, float z);
+	inline void scale(const Vector3 &v);
+	// fixed axis rotate
+	inline void rotate_x(float angle);
+	inline void rotate_y(float angle);
+	inline void rotate_z(float angle);
+	// axis-angle rotate
+	inline void rotate(float angle, float x, float y, float z);
+	inline void rotate(float angle, const Vector3 &axis);
+	// euler angles rotate
+	inline void rotate(float x, float y, float z);
+	inline void rotate(const Vector3 &euler);
+	// rotate by quaternion
+	inline void rotate(const Quaternion &q);
 
-	void set_column(int idx, const Vector3 &v)
-	{
-		m[0][idx] = v.x;
-		m[1][idx] = v.y;
-		m[2][idx] = v.z;
-		m[3][idx] = 0.0f;
-	}
+	// construct a lookat transformation
+	inline void lookat(const Vector3 &pos, const Vector3 &targ, const Vector3 &up = Vector3(0, 1, 0));
+	// inverse lookat for camera lookat matrix (like gluLookAt)
+	inline void inv_lookat(const Vector3 &pos, const Vector3 &targ, const Vector3 &up = Vector3(0, 1, 0));
 
-	void set_column(int idx, const Vector4 &v)
-	{
-		m[0][idx] = v.x;
-		m[1][idx] = v.y;
-		m[2][idx] = v.z;
-		m[3][idx] = v.w;
-	}
+	// construct an orthographic projection matrix
+	inline void ortho(float left, float right, float bottom, float top, float znear, float zfar);
+	// construct a perspective projection matrix
+	inline void frustum(float left, float right, float bottom, float top, float znear, float zfar);
+	inline void perspective(float fov, float aspect, float znear, float zfar);
 
-	Vector4 get_row(int idx) const
-	{
-		return Vector4(m[idx][0], m[idx][1], m[idx][2], m[idx][3]);
-	}
-
-	Vector3 get_row3(int idx) const
-	{
-		return Vector3(m[idx][0], m[idx][1], m[idx][2]);
-	}
-
-	Vector4 get_column(int idx) const
-	{
-		return Vector4(m[0][idx], m[1][idx], m[2][idx], m[3][idx]);
-	}
-
-	Vector3 get_column3(int idx) const
-	{
-		return Vector3(m[0][idx], m[1][idx], m[2][idx]);
-	}
-
-	Matrix4x4 upper3x3() const
-	{
-		return Matrix4x4(get_row3(0), get_row3(1), get_row3(2));
-	}
-
-	void transpose()
-	{
-		for(int i=0; i<4; i++) {
-			for(int j=0; j<i; j++) {
-				float tmp = m[i][j];
-				m[i][j] = m[j][i];
-				m[j][i] = tmp;
-			}
-		}
-	}
-
-	void print(FILE *fp = stdout)
-	{
-		for(int i=0; i<4; i++) {
-			fprintf(fp, "[ %4.4g %4.4g %4.4g %4.4g ]\n", m[i][0], m[i][1], m[i][2], m[i][3]);
-		}
-		fputc('\n', fp);
-	}
+	inline void print(FILE *fp = stdout);
 };
+
+inline Matrix4x4 operator *(const Matrix4x4 &a, const Matrix4x4 &b);
+inline Matrix4x4 &operator *=(Matrix4x4 &a, const Matrix4x4 &b);
+
+inline float determinant(const Matrix4x4 &m);
+inline Matrix4x4 transpose(const Matrix4x4 &m);
+inline Matrix4x4 cofactor_matrix(const Matrix4x4 &m);
+inline Matrix4x4 inverse(const Matrix4x4 &m);
+
+#include "matrix.inl"
 
 }	// namespace gph
 
