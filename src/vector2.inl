@@ -188,6 +188,10 @@ inline Vector2 faceforward(const Vector2 &n, const Vector2 &vi, const Vector2 &n
 	return dot(ng, vi) < 0.0f ? n : -n;
 }
 
+inline Vector2 faceforward(const Vector2 &n, const Vector2 &vi)
+{
+	return dot(n, vi) < 0.0f ? n : -n;
+}
 
 inline Vector2 major(const Vector2 &v)
 {

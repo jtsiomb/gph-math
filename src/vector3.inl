@@ -198,6 +198,11 @@ inline Vector3 faceforward(const Vector3 &n, const Vector3 &vi, const Vector3 &n
 	return dot(ng, vi) < 0.0f ? n : -n;
 }
 
+inline Vector3 faceforward(const Vector3 &n, const Vector3 &vi)
+{
+	return dot(n, vi) < 0.0f ? n : -n;
+}
+
 inline Vector3 major(const Vector3 &v)
 {
 	int m = major_idx(v);
