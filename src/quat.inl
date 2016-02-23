@@ -7,32 +7,32 @@ it under the terms of the MIT/X11 license. See LICENSE for details.
 If you intend to redistribute parts of the code without the LICENSE file
 replace this paragraph with the full contents of the LICENSE file.
 */
-inline Quaternion operator -(const Quaternion &q)
+inline Quat operator -(const Quat &q)
 {
-	return Quaternion(-q.x, -q.y, -q.z, -q.w);
+	return Quat(-q.x, -q.y, -q.z, -q.w);
 }
 
-inline Quaternion operator +(const Quaternion &a, const Quaternion &b)
+inline Quat operator +(const Quat &a, const Quat &b)
 {
-	return Quaternion(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+	return Quat(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 }
 
-inline Quaternion operator -(const Quaternion &a, const Quaternion &b)
+inline Quat operator -(const Quat &a, const Quat &b)
 {
-	return Quaternion(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+	return Quat(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 }
 
-inline Quaternion operator *(const Quaternion &a, const Quaternion &b)
+inline Quat operator *(const Quat &a, const Quat &b)
 {
-	Vector3 a_im = Vector3(a.x, a.y, a.z);
-	Vector3 b_im = Vector3(b.x, b.y, b.z);
+	Vec3 a_im = Vec3(a.x, a.y, a.z);
+	Vec3 b_im = Vec3(b.x, b.y, b.z);
 
 	float w = a.w * b.w - dot(a_im, b_im);
-	Vector3 im = a.w * b_im + b.w * a_im + cross(a_im, b_im);
-	return Quaternion(im.x, im.y, im.z, w);
+	Vec3 im = a.w * b_im + b.w * a_im + cross(a_im, b_im);
+	return Quat(im.x, im.y, im.z, w);
 }
 
-inline Quaternion &operator +=(Quaternion &a, const Quaternion &b)
+inline Quat &operator +=(Quat &a, const Quat &b)
 {
 	a.x += b.x;
 	a.y += b.y;
@@ -41,7 +41,7 @@ inline Quaternion &operator +=(Quaternion &a, const Quaternion &b)
 	return a;
 }
 
-inline Quaternion &operator -=(Quaternion &a, const Quaternion &b)
+inline Quat &operator -=(Quat &a, const Quat &b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
@@ -50,28 +50,28 @@ inline Quaternion &operator -=(Quaternion &a, const Quaternion &b)
 	return a;
 }
 
-inline Quaternion &operator *=(Quaternion &a, const Quaternion &b)
+inline Quat &operator *=(Quat &a, const Quat &b)
 {
-	Vector3 a_im = Vector3(a.x, a.y, a.z);
-	Vector3 b_im = Vector3(b.x, b.y, b.z);
+	Vec3 a_im = Vec3(a.x, a.y, a.z);
+	Vec3 b_im = Vec3(b.x, b.y, b.z);
 
 	float w = a.w * b.w - dot(a_im, b_im);
-	Vector3 im = a.w * b_im + b.w * a_im + cross(a_im, b_im);
-	a = Quaternion(im.x, im.y, im.z, w);
+	Vec3 im = a.w * b_im + b.w * a_im + cross(a_im, b_im);
+	a = Quat(im.x, im.y, im.z, w);
 	return a;
 }
 
-inline float length(const Quaternion &q)
+inline float length(const Quat &q)
 {
 	return (float)sqrt(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
 }
 
-inline float length_sq(const Quaternion &q)
+inline float length_sq(const Quat &q)
 {
 	return q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w;
 }
 
-inline void Quaternion::normalize()
+inline void Quat::normalize()
 {
 	float len = length(*this);
 	if(len != 0.0f) {
@@ -82,30 +82,30 @@ inline void Quaternion::normalize()
 	}
 }
 
-inline Quaternion normalize(const Quaternion &q)
+inline Quat normalize(const Quat &q)
 {
 	float len = length(q);
 	if(len != 0.0f) {
-		return Quaternion(q.x / len, q.y / len, q.z / len, q.w / len);
+		return Quat(q.x / len, q.y / len, q.z / len, q.w / len);
 	}
 	return q;
 }
 
-inline void Quaternion::conjugate()
+inline void Quat::conjugate()
 {
 	x = -x;
 	y = -y;
 	z = -z;
 }
 
-inline Quaternion conjugate(const Quaternion &q)
+inline Quat conjugate(const Quat &q)
 {
-	return Quaternion(-q.x, -q.y, -q.z, q.w);
+	return Quat(-q.x, -q.y, -q.z, q.w);
 }
 
-inline void Quaternion::invert()
+inline void Quat::invert()
 {
-	Quaternion conj = gph::conjugate(*this);
+	Quat conj = gph::conjugate(*this);
 	float len_sq = length_sq(conj);
 	if(len_sq != 0.0) {
 		x = conj.x / len_sq;
@@ -115,17 +115,17 @@ inline void Quaternion::invert()
 	}
 }
 
-inline Quaternion inverse(const Quaternion &q)
+inline Quat inverse(const Quat &q)
 {
-	Quaternion conj = conjugate(q);
+	Quat conj = conjugate(q);
 	float len_sq = length_sq(conj);
 	if(len_sq != 0.0) {
-		return Quaternion(conj.x / len_sq, conj.y / len_sq, conj.z / len_sq, conj.w / len_sq);
+		return Quat(conj.x / len_sq, conj.y / len_sq, conj.z / len_sq, conj.w / len_sq);
 	}
 	return q;
 }
 
-inline void Quaternion::set_rotation(const Vector3 &axis, float angle)
+inline void Quat::set_rotation(const Vec3 &axis, float angle)
 {
 	float half_angle = angle * 0.5f;
 	w = cos(half_angle);
@@ -135,9 +135,9 @@ inline void Quaternion::set_rotation(const Vector3 &axis, float angle)
 	z = axis.z * sin_ha;
 }
 
-inline void Quaternion::rotate(const Vector3 &axis, float angle)
+inline void Quat::rotate(const Vec3 &axis, float angle)
 {
-	Quaternion q;
+	Quat q;
 	float half_angle = angle * 0.5f;
 	q.w = cos(half_angle);
 	float sin_ha = sin(half_angle);
@@ -147,12 +147,12 @@ inline void Quaternion::rotate(const Vector3 &axis, float angle)
 	*this *= q;
 }
 
-inline void Quaternion::rotate(const Quaternion &rq)
+inline void Quat::rotate(const Quat &rq)
 {
 	*this = rq * *this * gph::conjugate(rq);
 }
 
-inline Matrix4x4 Quaternion::calc_matrix() const
+inline Mat4x4 Quat::calc_matrix() const
 {
 	float xsq2 = 2.0 * x * x;
 	float ysq2 = 2.0 * y * y;
@@ -161,16 +161,16 @@ inline Matrix4x4 Quaternion::calc_matrix() const
 	float sy = 1.0 - xsq2 - zsq2;
 	float sz = 1.0 - xsq2 - ysq2;
 
-	return Matrix4x4(
+	return Mat4x4(
 			sx,	2.0 * x * y - 2.0 * w * z, 2.0 * z * x + 2.0 * w * y, 0,
 			2.0 * x * y + 2.0 * w * z, sy, 2.0 * y * z - 2.0 * w * x, 0,
 			2.0 * z * x - 2.0 * w * y, 2.0 * y * z + 2.0 * w * x, sz, 0,
 			0, 0, 0, 1);
 }
 
-inline Quaternion slerp(const Quaternion &quat1, const Quaternion &q2, float t)
+inline Quat slerp(const Quat &quat1, const Quat &q2, float t)
 {
-	Quaternion q1 = quat1;
+	Quat q1 = quat1;
 	float dot = q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
 
 	if(dot < 0.0) {
@@ -203,10 +203,10 @@ inline Quaternion slerp(const Quaternion &quat1, const Quaternion &q2, float t)
 	float z = q1.z * a + q2.z * b;
 	float w = q1.w * a + q2.w * b;
 
-	return Quaternion(x, y, z, w);
+	return Quat(x, y, z, w);
 }
 
-inline Quaternion lerp(const Quaternion &a, const Quaternion &b, float t)
+inline Quat lerp(const Quat &a, const Quat &b, float t)
 {
 	return slerp(a, b, t);
 }

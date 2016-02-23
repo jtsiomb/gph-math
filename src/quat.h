@@ -15,46 +15,46 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
-class Quaternion {
+class Quat {
 public:
 	float x, y, z, w;	// w + xi + yj + zk
 
-	static Quaternion identity;
+	static Quat identity;
 
-	Quaternion() : x(0), y(0), z(0), w(1) {}
-	Quaternion(float x_, float y_, float z_, float w_) : x(x_), y(y_), z(z_), w(w_) {}
-	Quaternion(const Vector3 &v, float s) : x(v.x), y(v.y), z(v.z), w(s) {}
+	Quat() : x(0), y(0), z(0), w(1) {}
+	Quat(float x_, float y_, float z_, float w_) : x(x_), y(y_), z(z_), w(w_) {}
+	Quat(const Vec3 &v, float s) : x(v.x), y(v.y), z(v.z), w(s) {}
 
 	inline void normalize();
 	inline void conjugate();
 	inline void invert();
 
-	inline void set_rotation(const Vector3 &axis, float angle);
-	inline void rotate(const Vector3 &axis, float angle);
+	inline void set_rotation(const Vec3 &axis, float angle);
+	inline void rotate(const Vec3 &axis, float angle);
 	// rotate by a quaternion rq by doing: rq * *this * conjugate(rq)
-	inline void rotate(const Quaternion &rq);
+	inline void rotate(const Quat &rq);
 
-	inline Matrix4x4 calc_matrix() const;
+	inline Mat4x4 calc_matrix() const;
 };
 
-inline Quaternion operator -(const Quaternion &q);
-inline Quaternion operator +(const Quaternion &a, const Quaternion &b);
-inline Quaternion operator -(const Quaternion &a, const Quaternion &b);
-inline Quaternion operator *(const Quaternion &a, const Quaternion &b);
+inline Quat operator -(const Quat &q);
+inline Quat operator +(const Quat &a, const Quat &b);
+inline Quat operator -(const Quat &a, const Quat &b);
+inline Quat operator *(const Quat &a, const Quat &b);
 
-inline Quaternion &operator +=(Quaternion &a, const Quaternion &b);
-inline Quaternion &operator -=(Quaternion &a, const Quaternion &b);
-inline Quaternion &operator *=(Quaternion &a, const Quaternion &b);
+inline Quat &operator +=(Quat &a, const Quat &b);
+inline Quat &operator -=(Quat &a, const Quat &b);
+inline Quat &operator *=(Quat &a, const Quat &b);
 
-inline float length(const Quaternion &q);
-inline float length_sq(const Quaternion &q);
+inline float length(const Quat &q);
+inline float length_sq(const Quat &q);
 
-inline Quaternion normalize(const Quaternion &q);
-inline Quaternion conjugate(const Quaternion &q);
-inline Quaternion inverse(const Quaternion &q);
+inline Quat normalize(const Quat &q);
+inline Quat conjugate(const Quat &q);
+inline Quat inverse(const Quat &q);
 
-Quaternion slerp(const Quaternion &a, const Quaternion &b, float t);
-inline Quaternion lerp(const Quaternion &a, const Quaternion &b, float t);
+Quat slerp(const Quat &a, const Quat &b, float t);
+inline Quat lerp(const Quat &a, const Quat &b, float t);
 
 #include "quat.inl"
 

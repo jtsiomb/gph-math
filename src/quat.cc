@@ -11,6 +11,6 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
-Quaternion Quaternion::identity;
+Quat Quat::identity;
 
 }	// namespace gph

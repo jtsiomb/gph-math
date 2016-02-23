@@ -16,22 +16,22 @@ replace this paragraph with the full contents of the LICENSE file.
 namespace gph {
 
 // define the swizzle macros to emit function prototypes
-#define GPH_SWIZZLE2(T, a, b)		inline Vector2 a##b() const;
-#define GPH_SWIZZLE3(T, a, b, c)	inline Vector3 a##b##c() const;
-#define GPH_SWIZZLE4(T, a, b, c, d)	inline Vector4 a##b##c##d() const;
+#define GPH_SWIZZLE2(T, a, b)		inline Vec2 a##b() const;
+#define GPH_SWIZZLE3(T, a, b, c)	inline Vec3 a##b##c() const;
+#define GPH_SWIZZLE4(T, a, b, c, d)	inline Vec4 a##b##c##d() const;
 
-class Vector3;
-class Vector4;
-class Matrix4x4;
-class Quaternion;
+class Vec3;
+class Vec4;
+class Mat4x4;
+class Quat;
 
-class Vector2 {
+class Vec2 {
 public:
 	float x, y;
 
-	Vector2() : x(0), y(0) {}
-	Vector2(float x_, float y_) : x(x_), y(y_) {}
-	explicit Vector2(const Vector3 &v);
+	Vec2() : x(0), y(0) {}
+	Vec2(float x_, float y_) : x(x_), y(y_) {}
+	explicit Vec2(const Vec3 &v);
 
 	inline void normalize();
 	inline float &operator[] (int idx);
@@ -40,13 +40,13 @@ public:
 	GPH_VEC2_SWIZZLE
 };
 
-class Vector3 {
+class Vec3 {
 public:
 	float x, y, z;
 
-	Vector3() : x(0), y(0), z(0) {}
-	Vector3(float x_, float y_, float z_) : x(x_), y(y_), z(z_) {}
-	explicit Vector3(const Vector4 &v);
+	Vec3() : x(0), y(0), z(0) {}
+	Vec3(float x_, float y_, float z_) : x(x_), y(y_), z(z_) {}
+	explicit Vec3(const Vec4 &v);
 
 	inline void normalize();
 	inline float &operator[] (int idx);
@@ -56,13 +56,13 @@ public:
 };
 
 
-class Vector4 {
+class Vec4 {
 public:
 	float x, y, z, w;
 
-	Vector4() : x(0), y(0), z(0), w(0) {}
-	Vector4(float x_, float y_, float z_, float w_ = 1.0f) : x(x_), y(y_), z(z_), w(w_) {}
-	explicit Vector4(const Vector3 &v);
+	Vec4() : x(0), y(0), z(0), w(0) {}
+	Vec4(float x_, float y_, float z_, float w_ = 1.0f) : x(x_), y(y_), z(z_), w(w_) {}
+	explicit Vec4(const Vec3 &v);
 
 	inline void normalize();
 	inline float &operator[] (int idx);
@@ -71,138 +71,138 @@ public:
 	GPH_VEC4_SWIZZLE
 };
 
-// ---- Vector2 functions ----
-inline Vector2 operator -(const Vector2 &v);
-inline Vector2 operator +(const Vector2 &a, const Vector2 &b);
-inline Vector2 operator -(const Vector2 &a, const Vector2 &b);
-inline Vector2 operator *(const Vector2 &a, const Vector2 &b);
-inline Vector2 operator /(const Vector2 &a, const Vector2 &b);
-inline Vector2 operator *(const Vector2 &v, float s);
-inline Vector2 operator *(float s, const Vector2 &v);
-inline Vector2 operator /(const Vector2 &v, float s);
-inline Vector2 operator /(float s, const Vector2 &v);
-inline Vector2 &operator +=(Vector2 &a, const Vector2 &b);
-inline Vector2 &operator -=(Vector2 &a, const Vector2 &b);
-inline Vector2 &operator *=(Vector2 &a, const Vector2 &b);
-inline Vector2 &operator /=(Vector2 &a, const Vector2 &b);
-inline Vector2 &operator *=(Vector2 &v, float s);
-inline Vector2 &operator /=(Vector2 &v, float s);
+// ---- Vec2 functions ----
+inline Vec2 operator -(const Vec2 &v);
+inline Vec2 operator +(const Vec2 &a, const Vec2 &b);
+inline Vec2 operator -(const Vec2 &a, const Vec2 &b);
+inline Vec2 operator *(const Vec2 &a, const Vec2 &b);
+inline Vec2 operator /(const Vec2 &a, const Vec2 &b);
+inline Vec2 operator *(const Vec2 &v, float s);
+inline Vec2 operator *(float s, const Vec2 &v);
+inline Vec2 operator /(const Vec2 &v, float s);
+inline Vec2 operator /(float s, const Vec2 &v);
+inline Vec2 &operator +=(Vec2 &a, const Vec2 &b);
+inline Vec2 &operator -=(Vec2 &a, const Vec2 &b);
+inline Vec2 &operator *=(Vec2 &a, const Vec2 &b);
+inline Vec2 &operator /=(Vec2 &a, const Vec2 &b);
+inline Vec2 &operator *=(Vec2 &v, float s);
+inline Vec2 &operator /=(Vec2 &v, float s);
 
-Vector2 operator *(const Vector2 &v, const Matrix4x4 &m);
-Vector2 operator *(const Matrix4x4 &m, const Vector2 &v);
+Vec2 operator *(const Vec2 &v, const Mat4x4 &m);
+Vec2 operator *(const Mat4x4 &m, const Vec2 &v);
 
-inline bool operator ==(const Vector2 &a, const Vector2 &b);
-inline bool operator !=(const Vector2 &a, const Vector2 &b);
+inline bool operator ==(const Vec2 &a, const Vec2 &b);
+inline bool operator !=(const Vec2 &a, const Vec2 &b);
 
-inline float dot(const Vector2 &a, const Vector2 &b);
-inline float length(const Vector2 &v);
-inline float length_sq(const Vector2 &v);
-inline Vector2 normalize(const Vector2 &v);
+inline float dot(const Vec2 &a, const Vec2 &b);
+inline float length(const Vec2 &v);
+inline float length_sq(const Vec2 &v);
+inline Vec2 normalize(const Vec2 &v);
 
-inline Vector2 reflect(const Vector2 &v, const Vector2 &n);
-inline Vector2 refract(const Vector2 &v, const Vector2 &n, float ior);
-inline Vector2 refract(const Vector2 &v, const Vector2 &n, float from_ior, float to_ior);
+inline Vec2 reflect(const Vec2 &v, const Vec2 &n);
+inline Vec2 refract(const Vec2 &v, const Vec2 &n, float ior);
+inline Vec2 refract(const Vec2 &v, const Vec2 &n, float from_ior, float to_ior);
 
-inline float distance(const Vector2 &a, const Vector2 &b);
-inline float distance_sq(const Vector2 &a, const Vector2 &b);
-inline Vector2 faceforward(const Vector2 &n, const Vector2 &vi, const Vector2 &ng);
+inline float distance(const Vec2 &a, const Vec2 &b);
+inline float distance_sq(const Vec2 &a, const Vec2 &b);
+inline Vec2 faceforward(const Vec2 &n, const Vec2 &vi, const Vec2 &ng);
 
-inline Vector2 major(const Vector2 &v);
-inline int major_idx(const Vector2 &v);
-inline Vector2 proj_axis(const Vector2 &v, const Vector2 &axis);
+inline Vec2 major(const Vec2 &v);
+inline int major_idx(const Vec2 &v);
+inline Vec2 proj_axis(const Vec2 &v, const Vec2 &axis);
 
-inline Vector2 rotate(const Vector2 &v, float angle);
+inline Vec2 rotate(const Vec2 &v, float angle);
 
-// ---- Vector3 functions ----
-inline Vector3 operator -(const Vector3 &v);
-inline Vector3 operator +(const Vector3 &a, const Vector3 &b);
-inline Vector3 operator -(const Vector3 &a, const Vector3 &b);
-inline Vector3 operator *(const Vector3 &a, const Vector3 &b);
-inline Vector3 operator /(const Vector3 &a, const Vector3 &b);
-inline Vector3 operator *(const Vector3 &v, float s);
-inline Vector3 operator *(float s, const Vector3 &v);
-inline Vector3 operator /(const Vector3 &v, float s);
-inline Vector3 operator /(float s, const Vector3 &v);
-inline Vector3 &operator +=(Vector3 &a, const Vector3 &b);
-inline Vector3 &operator -=(Vector3 &a, const Vector3 &b);
-inline Vector3 &operator *=(Vector3 &a, const Vector3 &b);
-inline Vector3 &operator /=(Vector3 &a, const Vector3 &b);
-inline Vector3 &operator *=(Vector3 &v, float s);
-inline Vector3 &operator /=(Vector3 &v, float s);
+// ---- Vec3 functions ----
+inline Vec3 operator -(const Vec3 &v);
+inline Vec3 operator +(const Vec3 &a, const Vec3 &b);
+inline Vec3 operator -(const Vec3 &a, const Vec3 &b);
+inline Vec3 operator *(const Vec3 &a, const Vec3 &b);
+inline Vec3 operator /(const Vec3 &a, const Vec3 &b);
+inline Vec3 operator *(const Vec3 &v, float s);
+inline Vec3 operator *(float s, const Vec3 &v);
+inline Vec3 operator /(const Vec3 &v, float s);
+inline Vec3 operator /(float s, const Vec3 &v);
+inline Vec3 &operator +=(Vec3 &a, const Vec3 &b);
+inline Vec3 &operator -=(Vec3 &a, const Vec3 &b);
+inline Vec3 &operator *=(Vec3 &a, const Vec3 &b);
+inline Vec3 &operator /=(Vec3 &a, const Vec3 &b);
+inline Vec3 &operator *=(Vec3 &v, float s);
+inline Vec3 &operator /=(Vec3 &v, float s);
 
-Vector3 operator *(const Vector3 &v, const Matrix4x4 &m);
-Vector3 operator *(const Matrix4x4 &m, const Vector3 &v);
+Vec3 operator *(const Vec3 &v, const Mat4x4 &m);
+Vec3 operator *(const Mat4x4 &m, const Vec3 &v);
 
-inline bool operator ==(const Vector3 &a, const Vector3 &b);
-inline bool operator !=(const Vector3 &a, const Vector3 &b);
+inline bool operator ==(const Vec3 &a, const Vec3 &b);
+inline bool operator !=(const Vec3 &a, const Vec3 &b);
 
-inline float dot(const Vector3 &a, const Vector3 &b);
-inline Vector3 cross(const Vector3 &a, const Vector3 &b);
-inline float length(const Vector3 &v);
-inline float length_sq(const Vector3 &v);
-inline Vector3 normalize(const Vector3 &v);
+inline float dot(const Vec3 &a, const Vec3 &b);
+inline Vec3 cross(const Vec3 &a, const Vec3 &b);
+inline float length(const Vec3 &v);
+inline float length_sq(const Vec3 &v);
+inline Vec3 normalize(const Vec3 &v);
 
-inline Vector3 reflect(const Vector3 &v, const Vector3 &n);
-inline Vector3 refract(const Vector3 &v, const Vector3 &n, float ior);
-inline Vector3 refract(const Vector3 &v, const Vector3 &n, float from_ior, float to_ior);
+inline Vec3 reflect(const Vec3 &v, const Vec3 &n);
+inline Vec3 refract(const Vec3 &v, const Vec3 &n, float ior);
+inline Vec3 refract(const Vec3 &v, const Vec3 &n, float from_ior, float to_ior);
 
-inline float distance(const Vector3 &a, const Vector3 &b);
-inline float distance_sq(const Vector3 &a, const Vector3 &b);
-inline Vector3 faceforward(const Vector3 &n, const Vector3 &vi, const Vector3 &ng);
+inline float distance(const Vec3 &a, const Vec3 &b);
+inline float distance_sq(const Vec3 &a, const Vec3 &b);
+inline Vec3 faceforward(const Vec3 &n, const Vec3 &vi, const Vec3 &ng);
 
-inline Vector3 major(const Vector3 &v);
-inline int major_idx(const Vector3 &v);
-inline Vector3 proj_axis(const Vector3 &v, const Vector3 &axis);
+inline Vec3 major(const Vec3 &v);
+inline int major_idx(const Vec3 &v);
+inline Vec3 proj_axis(const Vec3 &v, const Vec3 &axis);
 
-inline Vector3 rotate(const Vector3 &v, const Quaternion &q);
-inline Vector3 rotate(const Vector3 &v, const Vector3 &axis, float angle);
-inline Vector3 rotate(const Vector3 &v, const Vector3 &euler);
+inline Vec3 rotate(const Vec3 &v, const Quat &q);
+inline Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
+inline Vec3 rotate(const Vec3 &v, const Vec3 &euler);
 
 
-// ---- Vector4 functions ----
-inline Vector4 operator -(const Vector4 &v);
-inline Vector4 operator +(const Vector4 &a, const Vector4 &b);
-inline Vector4 operator -(const Vector4 &a, const Vector4 &b);
-inline Vector4 operator *(const Vector4 &a, const Vector4 &b);
-inline Vector4 operator /(const Vector4 &a, const Vector4 &b);
-inline Vector4 operator *(const Vector4 &v, float s);
-inline Vector4 operator *(float s, const Vector4 &v);
-inline Vector4 operator /(const Vector4 &v, float s);
-inline Vector4 operator /(float s, const Vector4 &v);
-inline Vector4 &operator +=(Vector4 &a, const Vector4 &b);
-inline Vector4 &operator -=(Vector4 &a, const Vector4 &b);
-inline Vector4 &operator *=(Vector4 &a, const Vector4 &b);
-inline Vector4 &operator /=(Vector4 &a, const Vector4 &b);
-inline Vector4 &operator *=(Vector4 &v, float s);
-inline Vector4 &operator /=(Vector4 &v, float s);
+// ---- Vec4 functions ----
+inline Vec4 operator -(const Vec4 &v);
+inline Vec4 operator +(const Vec4 &a, const Vec4 &b);
+inline Vec4 operator -(const Vec4 &a, const Vec4 &b);
+inline Vec4 operator *(const Vec4 &a, const Vec4 &b);
+inline Vec4 operator /(const Vec4 &a, const Vec4 &b);
+inline Vec4 operator *(const Vec4 &v, float s);
+inline Vec4 operator *(float s, const Vec4 &v);
+inline Vec4 operator /(const Vec4 &v, float s);
+inline Vec4 operator /(float s, const Vec4 &v);
+inline Vec4 &operator +=(Vec4 &a, const Vec4 &b);
+inline Vec4 &operator -=(Vec4 &a, const Vec4 &b);
+inline Vec4 &operator *=(Vec4 &a, const Vec4 &b);
+inline Vec4 &operator /=(Vec4 &a, const Vec4 &b);
+inline Vec4 &operator *=(Vec4 &v, float s);
+inline Vec4 &operator /=(Vec4 &v, float s);
 
-Vector4 operator *(const Vector4 &v, const Matrix4x4 &m);
-Vector4 operator *(const Matrix4x4 &m, const Vector4 &v);
+Vec4 operator *(const Vec4 &v, const Mat4x4 &m);
+Vec4 operator *(const Mat4x4 &m, const Vec4 &v);
 
-inline bool operator ==(const Vector4 &a, const Vector4 &b);
-inline bool operator !=(const Vector4 &a, const Vector4 &b);
+inline bool operator ==(const Vec4 &a, const Vec4 &b);
+inline bool operator !=(const Vec4 &a, const Vec4 &b);
 
-inline float dot(const Vector4 &a, const Vector4 &b);
-inline Vector4 cross(const Vector4 &a, const Vector4 &b, const Vector4 &c);
-inline float length(const Vector4 &v);
-inline float length_sq(const Vector4 &v);
-inline Vector4 normalize(const Vector4 &v);
+inline float dot(const Vec4 &a, const Vec4 &b);
+inline Vec4 cross(const Vec4 &a, const Vec4 &b, const Vec4 &c);
+inline float length(const Vec4 &v);
+inline float length_sq(const Vec4 &v);
+inline Vec4 normalize(const Vec4 &v);
 
-inline Vector4 reflect(const Vector4 &v, const Vector4 &n);
-inline Vector4 refract(const Vector4 &v, const Vector4 &n, float ior);
-inline Vector4 refract(const Vector4 &v, const Vector4 &n, float from_ior, float to_ior);
+inline Vec4 reflect(const Vec4 &v, const Vec4 &n);
+inline Vec4 refract(const Vec4 &v, const Vec4 &n, float ior);
+inline Vec4 refract(const Vec4 &v, const Vec4 &n, float from_ior, float to_ior);
 
-inline float distance(const Vector4 &a, const Vector4 &b);
-inline float distance_sq(const Vector4 &a, const Vector4 &b);
-inline Vector4 faceforward(const Vector4 &n, const Vector4 &vi, const Vector4 &ng);
+inline float distance(const Vec4 &a, const Vec4 &b);
+inline float distance_sq(const Vec4 &a, const Vec4 &b);
+inline Vec4 faceforward(const Vec4 &n, const Vec4 &vi, const Vec4 &ng);
 
-inline Vector4 major(const Vector4 &v);
-inline int major_idx(const Vector4 &v);
-inline Vector4 proj_axis(const Vector4 &v, const Vector4 &axis);
+inline Vec4 major(const Vec4 &v);
+inline int major_idx(const Vec4 &v);
+inline Vec4 proj_axis(const Vec4 &v, const Vec4 &axis);
 
-inline Vector4 rotate(const Vector4 &v, const Quaternion &q);
-inline Vector4 rotate(const Vector4 &v, const Vector4 &axis, float angle);
-inline Vector4 rotate(const Vector4 &v, const Vector4 &euler);
+inline Vec4 rotate(const Vec4 &v, const Quat &q);
+inline Vec4 rotate(const Vec4 &v, const Vec4 &axis, float angle);
+inline Vec4 rotate(const Vec4 &v, const Vec4 &euler);
 
 // include definitions of all the inline functions above
 #include "vector2.inl"
@@ -213,9 +213,9 @@ inline Vector4 rotate(const Vector4 &v, const Vector4 &euler);
 #undef GPH_SWIZZLE2
 #undef GPH_SWIZZLE3
 #undef GPH_SWIZZLE4
-#define GPH_SWIZZLE2(T, a, b)		inline Vector2 T::a##b() const { return Vector2(a, b); }
-#define GPH_SWIZZLE3(T, a, b, c)	inline Vector3 T::a##b##c() const { return Vector3(a, b, c); }
-#define GPH_SWIZZLE4(T, a, b, c, d)	inline Vector4 T::a##b##c##d() const { return Vector4(a, b, c, d); }
+#define GPH_SWIZZLE2(T, a, b)		inline Vec2 T::a##b() const { return Vec2(a, b); }
+#define GPH_SWIZZLE3(T, a, b, c)	inline Vec3 T::a##b##c() const { return Vec3(a, b, c); }
+#define GPH_SWIZZLE4(T, a, b, c, d)	inline Vec4 T::a##b##c##d() const { return Vec4(a, b, c, d); }
 GPH_VEC2_SWIZZLE
 GPH_VEC3_SWIZZLE
 GPH_VEC4_SWIZZLE
