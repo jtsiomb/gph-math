@@ -11,6 +11,6 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
-Mat4x4 Mat4x4::identity(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+Mat4 Mat4::identity(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 
 }	// namespace gph

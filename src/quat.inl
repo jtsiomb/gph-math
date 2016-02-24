@@ -152,7 +152,7 @@ inline void Quat::rotate(const Quat &rq)
 	*this = rq * *this * gph::conjugate(rq);
 }
 
-inline Mat4x4 Quat::calc_matrix() const
+inline Mat4 Quat::calc_matrix() const
 {
 	float xsq2 = 2.0 * x * x;
 	float ysq2 = 2.0 * y * y;
@@ -161,7 +161,7 @@ inline Mat4x4 Quat::calc_matrix() const
 	float sy = 1.0 - xsq2 - zsq2;
 	float sz = 1.0 - xsq2 - ysq2;
 
-	return Mat4x4(
+	return Mat4(
 			sx,	2.0 * x * y - 2.0 * w * z, 2.0 * z * x + 2.0 * w * y, 0,
 			2.0 * x * y + 2.0 * w * z, sy, 2.0 * y * z - 2.0 * w * x, 0,
 			2.0 * z * x - 2.0 * w * y, 2.0 * y * z + 2.0 * w * x, sz, 0,

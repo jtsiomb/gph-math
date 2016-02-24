@@ -20,7 +20,7 @@ Vec2::Vec2(const Vec3 &v)
 }
 
 
-Vec2 operator *(const Vec2 &v, const Mat4x4 &m)
+Vec2 operator *(const Vec2 &v, const Mat4 &m)
 {
 	// essentially Vec4(v.x, v.y, 0, 1) * m
 	float x = v.x * m[0][0] + v.y * m[0][1] + m[0][3];
@@ -28,7 +28,7 @@ Vec2 operator *(const Vec2 &v, const Mat4x4 &m)
 	return Vec2(x, y);
 }
 
-Vec2 operator *(const Mat4x4 &m, const Vec2 &v)
+Vec2 operator *(const Mat4 &m, const Vec2 &v)
 {
 	// essentially m * Vec4(v.x, v.y, 0, 1)
 	float x = m[0][0] * v.x + m[1][0] * v.y + m[3][0];
@@ -45,7 +45,7 @@ Vec3::Vec3(const Vec4 &v)
 {
 }
 
-Vec3 operator *(const Vec3 &v, const Mat4x4 &m)
+Vec3 operator *(const Vec3 &v, const Mat4 &m)
 {
 	float x = v.x * m[0][0] + v.y * m[0][1] + v.z * m[0][2] + m[0][3];
 	float y = v.x * m[1][0] + v.y * m[1][1] + v.z * m[1][2] + m[1][3];
@@ -53,7 +53,7 @@ Vec3 operator *(const Vec3 &v, const Mat4x4 &m)
 	return Vec3(x, y, z);
 }
 
-Vec3 operator *(const Mat4x4 &m, const Vec3 &v)
+Vec3 operator *(const Mat4 &m, const Vec3 &v)
 {
 	float x = m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z + m[3][0];
 	float y = m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z + m[3][1];
@@ -68,7 +68,7 @@ Vec4::Vec4(const Vec3 &v)
 {
 }
 
-Vec4 operator *(const Vec4 &v, const Mat4x4 &m)
+Vec4 operator *(const Vec4 &v, const Mat4 &m)
 {
 	float x = v.x * m[0][0] + v.y * m[0][1] + v.z * m[0][2] + v.w * m[0][3];
 	float y = v.x * m[1][0] + v.y * m[1][1] + v.z * m[1][2] + v.w * m[1][3];
@@ -77,7 +77,7 @@ Vec4 operator *(const Vec4 &v, const Mat4x4 &m)
 	return Vec4(x, y, z, w);
 }
 
-Vec4 operator *(const Mat4x4 &m, const Vec4 &v)
+Vec4 operator *(const Mat4 &m, const Vec4 &v)
 {
 	float x = m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z + m[3][0] * v.w;
 	float y = m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z + m[3][1] * v.w;

@@ -12,6 +12,7 @@ replace this paragraph with the full contents of the LICENSE file.
 
 #include "vector.h"
 #include "matrix.h"
+#include "quat.h"
 #include "ray.h"
 
 #ifndef GPH_NAMESPACE

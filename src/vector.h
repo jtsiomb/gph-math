@@ -22,7 +22,7 @@ namespace gph {
 
 class Vec3;
 class Vec4;
-class Mat4x4;
+class Mat4;
 class Quat;
 
 class Vec2 {
@@ -88,8 +88,8 @@ inline Vec2 &operator /=(Vec2 &a, const Vec2 &b);
 inline Vec2 &operator *=(Vec2 &v, float s);
 inline Vec2 &operator /=(Vec2 &v, float s);
 
-Vec2 operator *(const Vec2 &v, const Mat4x4 &m);
-Vec2 operator *(const Mat4x4 &m, const Vec2 &v);
+Vec2 operator *(const Vec2 &v, const Mat4 &m);
+Vec2 operator *(const Mat4 &m, const Vec2 &v);
 
 inline bool operator ==(const Vec2 &a, const Vec2 &b);
 inline bool operator !=(const Vec2 &a, const Vec2 &b);
@@ -130,8 +130,8 @@ inline Vec3 &operator /=(Vec3 &a, const Vec3 &b);
 inline Vec3 &operator *=(Vec3 &v, float s);
 inline Vec3 &operator /=(Vec3 &v, float s);
 
-Vec3 operator *(const Vec3 &v, const Mat4x4 &m);
-Vec3 operator *(const Mat4x4 &m, const Vec3 &v);
+Vec3 operator *(const Vec3 &v, const Mat4 &m);
+Vec3 operator *(const Mat4 &m, const Vec3 &v);
 
 inline bool operator ==(const Vec3 &a, const Vec3 &b);
 inline bool operator !=(const Vec3 &a, const Vec3 &b);
@@ -176,8 +176,8 @@ inline Vec4 &operator /=(Vec4 &a, const Vec4 &b);
 inline Vec4 &operator *=(Vec4 &v, float s);
 inline Vec4 &operator /=(Vec4 &v, float s);
 
-Vec4 operator *(const Vec4 &v, const Mat4x4 &m);
-Vec4 operator *(const Mat4x4 &m, const Vec4 &v);
+Vec4 operator *(const Vec4 &v, const Mat4 &m);
+Vec4 operator *(const Mat4 &m, const Vec4 &v);
 
 inline bool operator ==(const Vec4 &a, const Vec4 &b);
 inline bool operator !=(const Vec4 &a, const Vec4 &b);

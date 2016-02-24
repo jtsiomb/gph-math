@@ -9,17 +9,17 @@ replace this paragraph with the full contents of the LICENSE file.
 */
 #include <string.h>
 
-inline Mat4x4::Mat4x4()
+inline Mat4::Mat4()
 {
 	memcpy((float*)m, (const float*)identity.m, 16 * sizeof(float));
 }
 
-inline Mat4x4::Mat4x4(const float *m)
+inline Mat4::Mat4(const float *m)
 {
 	memcpy((float*)this->m, (const float*)m, 16 * sizeof(float));
 }
 
-inline Mat4x4::Mat4x4(float m00, float m01, float m02, float m03,
+inline Mat4::Mat4(float m00, float m01, float m02, float m03,
 		float m10, float m11, float m12, float m13,
 		float m20, float m21, float m22, float m23,
 		float m30, float m31, float m32, float m33)
@@ -30,7 +30,7 @@ inline Mat4x4::Mat4x4(float m00, float m01, float m02, float m03,
 	m[3][0] = m30; m[3][1] = m31; m[3][2] = m32; m[3][3] = m33;
 }
 
-inline Mat4x4::Mat4x4(const Vec4 &v0, const Vec4 &v1, const Vec4 &v2, const Vec4 &v3)
+inline Mat4::Mat4(const Vec4 &v0, const Vec4 &v1, const Vec4 &v2, const Vec4 &v3)
 {
 	m[0][0] = v0.x; m[0][1] = v0.y; m[0][2] = v0.z; m[0][3] = v0.w;
 	m[1][0] = v1.x; m[1][1] = v1.y; m[1][2] = v1.z; m[1][3] = v1.w;
@@ -38,7 +38,7 @@ inline Mat4x4::Mat4x4(const Vec4 &v0, const Vec4 &v1, const Vec4 &v2, const Vec4
 	m[3][0] = v3.x; m[3][1] = v3.y; m[3][2] = v3.z; m[3][3] = v3.w;
 }
 
-inline Mat4x4::Mat4x4(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &v3)
+inline Mat4::Mat4(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &v3)
 {
 	m[0][0] = v0.x; m[0][1] = v0.y; m[0][2] = v0.z; m[0][3] = 0.0f;
 	m[1][0] = v1.x; m[1][1] = v1.y; m[1][2] = v1.z; m[1][3] = 0.0f;
@@ -46,17 +46,17 @@ inline Mat4x4::Mat4x4(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3
 	m[3][0] = v3.x; m[3][1] = v3.y; m[3][2] = v3.z; m[3][3] = 1.0f;
 }
 
-inline float *Mat4x4::operator [](int idx)
+inline float *Mat4::operator [](int idx)
 {
 	return m[idx];
 }
 
-inline const float *Mat4x4::operator [](int idx) const
+inline const float *Mat4::operator [](int idx) const
 {
 	return m[idx];
 }
 
-inline void Mat4x4::set_row(int idx, const Vec3 &v)
+inline void Mat4::set_row(int idx, const Vec3 &v)
 {
 	m[idx][0] = v.x;
 	m[idx][1] = v.y;
@@ -64,7 +64,7 @@ inline void Mat4x4::set_row(int idx, const Vec3 &v)
 	m[idx][3] = 0.0f;
 }
 
-inline void Mat4x4::set_row(int idx, const Vec4 &v)
+inline void Mat4::set_row(int idx, const Vec4 &v)
 {
 	m[idx][0] = v.x;
 	m[idx][1] = v.y;
@@ -72,7 +72,7 @@ inline void Mat4x4::set_row(int idx, const Vec4 &v)
 	m[idx][3] = v.w;
 }
 
-inline void Mat4x4::set_column(int idx, const Vec3 &v)
+inline void Mat4::set_column(int idx, const Vec3 &v)
 {
 	m[0][idx] = v.x;
 	m[1][idx] = v.y;
@@ -80,7 +80,7 @@ inline void Mat4x4::set_column(int idx, const Vec3 &v)
 	m[3][idx] = 0.0f;
 }
 
-inline void Mat4x4::set_column(int idx, const Vec4 &v)
+inline void Mat4::set_column(int idx, const Vec4 &v)
 {
 	m[0][idx] = v.x;
 	m[1][idx] = v.y;
@@ -88,32 +88,32 @@ inline void Mat4x4::set_column(int idx, const Vec4 &v)
 	m[3][idx] = v.w;
 }
 
-inline Vec4 Mat4x4::get_row(int idx) const
+inline Vec4 Mat4::get_row(int idx) const
 {
 	return Vec4(m[idx][0], m[idx][1], m[idx][2], m[idx][3]);
 }
 
-inline Vec3 Mat4x4::get_row3(int idx) const
+inline Vec3 Mat4::get_row3(int idx) const
 {
 	return Vec3(m[idx][0], m[idx][1], m[idx][2]);
 }
 
-inline Vec4 Mat4x4::get_column(int idx) const
+inline Vec4 Mat4::get_column(int idx) const
 {
 	return Vec4(m[0][idx], m[1][idx], m[2][idx], m[3][idx]);
 }
 
-inline Vec3 Mat4x4::get_column3(int idx) const
+inline Vec3 Mat4::get_column3(int idx) const
 {
 	return Vec3(m[0][idx], m[1][idx], m[2][idx]);
 }
 
-inline Mat4x4 Mat4x4::upper3x3() const
+inline Mat4 Mat4::upper3x3() const
 {
-	return Mat4x4(get_row3(0), get_row3(1), get_row3(2));
+	return Mat4(get_row3(0), get_row3(1), get_row3(2));
 }
 
-inline void Mat4x4::transpose()
+inline void Mat4::transpose()
 {
 	for(int i=0; i<4; i++) {
 		for(int j=0; j<i; j++) {
@@ -124,7 +124,7 @@ inline void Mat4x4::transpose()
 	}
 }
 
-inline void Mat4x4::print(FILE *fp)
+inline void Mat4::print(FILE *fp)
 {
 	for(int i=0; i<4; i++) {
 		fprintf(fp, "[ %4.4g %4.4g %4.4g %4.4g ]\n", m[i][0], m[i][1], m[i][2], m[i][3]);

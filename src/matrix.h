@@ -15,21 +15,21 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
-class Mat4x4 {
+class Mat4 {
 private:
 	float m[4][4];
 
 public:
-	static Mat4x4 identity;
+	static Mat4 identity;
 
-	inline Mat4x4();
-	inline Mat4x4(const float *m);
-	inline Mat4x4(float m00, float m01, float m02, float m03,
+	inline Mat4();
+	inline Mat4(const float *m);
+	inline Mat4(float m00, float m01, float m02, float m03,
 			float m10, float m11, float m12, float m13,
 			float m20, float m21, float m22, float m23,
 			float m30, float m31, float m32, float m33);
-	inline Mat4x4(const Vec4 &v0, const Vec4 &v1, const Vec4 &v2, const Vec4 &v3);
-	inline Mat4x4(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &v3 = Vec3(0, 0, 0));
+	inline Mat4(const Vec4 &v0, const Vec4 &v1, const Vec4 &v2, const Vec4 &v3);
+	inline Mat4(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &v3 = Vec3(0, 0, 0));
 
 	inline float *operator [](int idx);
 	inline const float *operator [](int idx) const;
@@ -43,7 +43,7 @@ public:
 	inline Vec4 get_column(int idx) const;
 	inline Vec3 get_column3(int idx) const;
 
-	inline Mat4x4 upper3x3() const;
+	inline Mat4 upper3x3() const;
 
 	inline void transpose();
 	inline void inverse();
@@ -105,13 +105,13 @@ public:
 	inline void print(FILE *fp = stdout);
 };
 
-inline Mat4x4 operator *(const Mat4x4 &a, const Mat4x4 &b);
-inline Mat4x4 &operator *=(Mat4x4 &a, const Mat4x4 &b);
+inline Mat4 operator *(const Mat4 &a, const Mat4 &b);
+inline Mat4 &operator *=(Mat4 &a, const Mat4 &b);
 
-inline float determinant(const Mat4x4 &m);
-inline Mat4x4 transpose(const Mat4x4 &m);
-inline Mat4x4 cofactor_matrix(const Mat4x4 &m);
-inline Mat4x4 inverse(const Mat4x4 &m);
+inline float determinant(const Mat4 &m);
+inline Mat4 transpose(const Mat4 &m);
+inline Mat4 cofactor_matrix(const Mat4 &m);
+inline Mat4 inverse(const Mat4 &m);
 
 #include "matrix.inl"
 

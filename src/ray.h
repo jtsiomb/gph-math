@@ -23,18 +23,18 @@ public:
 	Ray(const Vec3 &o, const Vec3 &d) : origin(o), dir(d) {}
 };
 
-inline Ray operator *(const Ray &r, const Mat4x4 &m)
+inline Ray operator *(const Ray &r, const Mat4 &m)
 {
-	Mat4x4 up = m;
+	Mat4 up = m;
 	up[0][3] = up[1][3] = up[2][3] = up[3][0] = up[3][1] = up[3][2] = 0.0;
 	up[3][3] = 1.0;
 
 	return Ray(r.origin * m, r.dir * up);
 }
 
-inline Ray operator *(const Mat4x4 &m, const Ray &r)
+inline Ray operator *(const Mat4 &m, const Ray &r)
 {
-	Mat4x4 up = m;
+	Mat4 up = m;
 	up[0][3] = up[1][3] = up[2][3] = up[3][0] = up[3][1] = up[3][2] = 0.0;
 	up[3][3] = 1.0;
 

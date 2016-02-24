@@ -34,7 +34,7 @@ public:
 	// rotate by a quaternion rq by doing: rq * *this * conjugate(rq)
 	inline void rotate(const Quat &rq);
 
-	inline Mat4x4 calc_matrix() const;
+	inline Mat4 calc_matrix() const;
 };
 
 inline Quat operator -(const Quat &q);
