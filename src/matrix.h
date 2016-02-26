@@ -62,7 +62,7 @@ public:
 	inline const float *operator [](int idx) const;
 
 	inline Mat2 submatrix(int row, int col) const;
-	inline float minor(int row, int col) const;
+	inline float subdet(int row, int col) const;
 	inline float determinant() const;
 };
 
@@ -99,7 +99,7 @@ public:
 
 	inline Mat4 upper3x3() const;
 
-	inline float minor(int row, int col) const;
+	inline float subdet(int row, int col) const;
 	inline float cofactor(int row, int col) const;
 	inline float determinant() const;
 

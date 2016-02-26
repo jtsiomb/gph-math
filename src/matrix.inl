@@ -77,14 +77,14 @@ inline Mat2 Mat3::submatrix(int row, int col) const
 	return sub;
 }
 
-inline float Mat3::minor(int row, int col) const
+inline float Mat3::subdet(int row, int col) const
 {
 	return submatrix(row, col).determinant();
 }
 
 inline float Mat3::determinant() const
 {
-	return m[0][0] * minor(0, 0) + m[0][1] * minor(0, 1) + m[0][2] * minor(0, 2);
+	return m[0][0] * subdet(0, 0) + m[0][1] * subdet(0, 1) + m[0][2] * subdet(0, 2);
 }
 
 // ---- Mat4 functions ----
@@ -211,21 +211,21 @@ inline Mat4 Mat4::upper3x3() const
 	return Mat4(get_row3(0), get_row3(1), get_row3(2));
 }
 
-inline float Mat4::minor(int row, int col) const
+inline float Mat4::subdet(int row, int col) const
 {
 	return submatrix(row, col).determinant();
 }
 
 inline float Mat4::cofactor(int row, int col) const
 {
-	float min = minor(row, col);
+	float min = subdet(row, col);
 	return (row + col) & 1 ? -min : min;
 }
 
 inline float Mat4::determinant() const
 {
-	return m[0][0] * minor(0, 0) + m[0][1] * minor(0, 1) +
-		m[0][2] * minor(0, 2) + m[0][3] * minor(0, 3);
+	return m[0][0] * subdet(0, 0) + m[0][1] * subdet(0, 1) +
+		m[0][2] * subdet(0, 2) + m[0][3] * subdet(0, 3);
 }
 
 inline void Mat4::transpose()
