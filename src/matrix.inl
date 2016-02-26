@@ -371,7 +371,7 @@ inline void Mat4::rotation(float a, float b, float c, EulerMode mode)
 	mb.rotation_axis(axis[mode][1], b);
 	mc.rotation_axis(axis[mode][2], c);
 
-	*this = ma * mb * mc;
+	*this = mc * mb * ma;
 }
 
 inline void Mat4::rotation(const Vec3 &euler, EulerMode mode)

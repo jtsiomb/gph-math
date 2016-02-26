@@ -123,8 +123,8 @@ public:
 	inline void rotation(float angle, float x, float y, float z);
 	inline void rotation(float angle, const Vec3 &axis);
 	// euler angles rotation
-	inline void rotation(float a, float b, float c, EulerMode mode = EULER_ZXZ);
-	inline void rotation(const Vec3 &euler, EulerMode mode = EULER_ZXZ);
+	inline void rotation(float a, float b, float c, EulerMode mode = EULER_XYZ);
+	inline void rotation(const Vec3 &euler, EulerMode mode = EULER_XYZ);
 	// rotation by quaternion
 	void rotation(const Quat &q);
 
@@ -146,8 +146,8 @@ public:
 	inline void rotate(float angle, float x, float y, float z);
 	inline void rotate(float angle, const Vec3 &axis);
 	// euler angles rotate
-	inline void rotate(float x, float y, float z, EulerMode mode = EULER_ZXZ);
-	inline void rotate(const Vec3 &euler, EulerMode mode = EULER_ZXZ);
+	inline void rotate(float x, float y, float z, EulerMode mode = EULER_XYZ);
+	inline void rotate(const Vec3 &euler, EulerMode mode = EULER_XYZ);
 	// rotate by quaternion
 	inline void rotate(const Quat &q);
 
