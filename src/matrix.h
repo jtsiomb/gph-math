@@ -15,6 +15,58 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
+enum EulerMode {
+	EULER_XYZ,
+	EULER_XZY,
+	EULER_YXZ,
+	EULER_YZX,
+	EULER_ZXY,
+	EULER_ZYX,
+	EULER_ZXZ,
+	EULER_ZYZ,
+	EULER_YXY,
+	EULER_YZY,
+	EULER_XYX,
+	EULER_XZX
+};
+
+class Mat2 {
+private:
+	float m[2][2];
+
+public:
+	static Mat2 identity;
+
+	inline Mat2();
+	inline Mat2(float m00, float m01, float m10, float m11);
+
+	inline float *operator [](int idx);
+	inline const float *operator [](int idx) const;
+
+	inline float determinant() const;
+};
+
+class Mat3 {
+private:
+	float m[3][3];
+
+public:
+	static Mat3 identity;
+
+	inline Mat3();
+	inline Mat3(float m00, float m01, float m02,
+			float m10, float m11, float m12,
+			float m20, float m21, float m22);
+
+	inline float *operator [](int idx);
+	inline const float *operator [](int idx) const;
+
+	inline Mat2 submatrix(int row, int col) const;
+	inline float minor(int row, int col) const;
+	inline float determinant() const;
+};
+
+
 class Mat4 {
 private:
 	float m[4][4];
@@ -31,6 +83,8 @@ public:
 	inline Mat4(const Vec4 &v0, const Vec4 &v1, const Vec4 &v2, const Vec4 &v3);
 	inline Mat4(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &v3 = Vec3(0, 0, 0));
 
+	inline Mat3 submatrix(int row, int col) const;
+
 	inline float *operator [](int idx);
 	inline const float *operator [](int idx) const;
 
@@ -45,8 +99,12 @@ public:
 
 	inline Mat4 upper3x3() const;
 
+	inline float minor(int row, int col) const;
+	inline float cofactor(int row, int col) const;
+	inline float determinant() const;
+
 	inline void transpose();
-	inline void inverse();
+	inline bool inverse();
 
 	/* translation/rotation/scaling functions construct a transformation
 	 * matrix of the appropriate type, discarding any previous contents
@@ -60,14 +118,15 @@ public:
 	inline void rotation_x(float angle);
 	inline void rotation_y(float angle);
 	inline void rotation_z(float angle);
+	inline void rotation_axis(int idx, float angle);
 	// axis-angle rotation
 	inline void rotation(float angle, float x, float y, float z);
 	inline void rotation(float angle, const Vec3 &axis);
 	// euler angles rotation
-	inline void rotation(float x, float y, float z);
-	inline void rotation(const Vec3 &euler);
+	inline void rotation(float a, float b, float c, EulerMode mode = EULER_ZXZ);
+	inline void rotation(const Vec3 &euler, EulerMode mode = EULER_ZXZ);
 	// rotation by quaternion
-	inline void rotation(const Quat &q);
+	void rotation(const Quat &q);
 
 	/* translate/rotate/scale functions construct a temporary
 	 * transformation matrix of the appropriate type, and multiply
@@ -82,12 +141,13 @@ public:
 	inline void rotate_x(float angle);
 	inline void rotate_y(float angle);
 	inline void rotate_z(float angle);
+	inline void rotate_axis(int idx, float angle);
 	// axis-angle rotate
 	inline void rotate(float angle, float x, float y, float z);
 	inline void rotate(float angle, const Vec3 &axis);
 	// euler angles rotate
-	inline void rotate(float x, float y, float z);
-	inline void rotate(const Vec3 &euler);
+	inline void rotate(float x, float y, float z, EulerMode mode = EULER_ZXZ);
+	inline void rotate(const Vec3 &euler, EulerMode mode = EULER_ZXZ);
 	// rotate by quaternion
 	inline void rotate(const Quat &q);
 
@@ -107,6 +167,9 @@ public:
 
 inline Mat4 operator *(const Mat4 &a, const Mat4 &b);
 inline Mat4 &operator *=(Mat4 &a, const Mat4 &b);
+
+inline Mat4 operator *(const Mat4 &m, float s);
+inline Mat4 operator *(float s, const Mat4 &m);
 
 inline float determinant(const Mat4 &m);
 inline Mat4 transpose(const Mat4 &m);

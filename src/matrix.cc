@@ -8,9 +8,17 @@ If you intend to redistribute parts of the code without the LICENSE file
 replace this paragraph with the full contents of the LICENSE file.
 */
 #include "matrix.h"
+#include "quat.h"
 
 namespace gph {
 
+Mat2 Mat2::identity(1, 0, 0, 1);
+Mat3 Mat3::identity(1, 0, 0, 0, 1, 0, 0, 0, 1);
 Mat4 Mat4::identity(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+void Mat4::rotation(const Quat &q)
+{
+	*this = q.calc_matrix();
+}
 
 }	// namespace gph
