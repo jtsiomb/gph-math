@@ -503,8 +503,11 @@ inline void Mat4::print(FILE *fp)
 inline Mat4 operator *(const Mat4 &a, const Mat4 &b)
 {
 	Mat4 res;
-	for(int i=0; i<4; i++) {
-		for(int j=0; j<4; j++) {
+	/* i and j loops are swapped to maintain the illusion of column-major
+	 * elements during multiplication
+	 */
+	for(int j=0; j<4; j++) {
+		for(int i=0; i<4; i++) {
 			res[i][j] = a[i][0] * b[0][j] + a[i][1] * b[1][j] +
 				a[i][2] * b[2][j] + a[i][3] * b[3][j];
 		}
@@ -521,8 +524,11 @@ inline Mat4 &operator *=(Mat4 &a, const Mat4 &b)
 inline Mat4 operator *(const Mat4 &m, float s)
 {
 	Mat4 res;
-	for(int i=0; i<4; i++) {
-		for(int j=0; j<4; j++) {
+	/* i and j loops are swapped to maintain the illusion of column-major
+	 * elements during multiplication
+	 */
+	for(int j=0; j<4; j++) {
+		for(int i=0; i<4; i++) {
 			res[i][j] = m[i][j] * s;
 		}
 	}

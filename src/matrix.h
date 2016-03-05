@@ -13,6 +13,12 @@ replace this paragraph with the full contents of the LICENSE file.
 #include <stdio.h>
 #include "vector.h"
 
+/* NOTE:
+ * matrices are treated by all operations as column-major, to match OpenGL
+ * conventions, so everything is pretty much transposed. Hopefully I managed
+ * to maintain consistency.
+ */
+
 namespace gph {
 
 enum EulerMode {
