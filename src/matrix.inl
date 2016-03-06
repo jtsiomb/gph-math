@@ -84,7 +84,7 @@ inline float Mat3::subdet(int row, int col) const
 
 inline float Mat3::determinant() const
 {
-	return m[0][0] * subdet(0, 0) + m[0][1] * subdet(0, 1) + m[0][2] * subdet(0, 2);
+	return m[0][0] * subdet(0, 0) - m[0][1] * subdet(0, 1) + m[0][2] * subdet(0, 2);
 }
 
 // ---- Mat4 functions ----
@@ -224,8 +224,8 @@ inline float Mat4::cofactor(int row, int col) const
 
 inline float Mat4::determinant() const
 {
-	return m[0][0] * subdet(0, 0) + m[0][1] * subdet(0, 1) +
-		m[0][2] * subdet(0, 2) + m[0][3] * subdet(0, 3);
+	return m[0][0] * subdet(0, 0) - m[0][1] * subdet(0, 1) +
+		m[0][2] * subdet(0, 2) - m[0][3] * subdet(0, 3);
 }
 
 inline void Mat4::transpose()
