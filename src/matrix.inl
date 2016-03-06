@@ -469,7 +469,6 @@ inline void Mat4::rotate(const Quat &q)
 
 inline void Mat4::lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up)
 {
-	// TODO untested
 	Vec3 dir = normalize(targ - pos);
 	Vec3 right = normalize(cross(dir, up));
 	Vec3 vup = normalize(cross(right, dir));
@@ -504,25 +503,46 @@ inline void Mat4::inv_lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up)
 
 inline void Mat4::ortho(float left, float right, float bottom, float top, float znear, float zfar)
 {
-	// TODO
+	float dx = right - left;
+	float dy = top - bottom;
+	float dz = zfar - znear;
+
+	*this = identity;
+	m[0][0] = 2.0f / dx;
+	m[1][1] = 2.0f / dy;
+	m[2][2] = -2.0f / dz;
+	m[3][0] = -(right + left) / dx;
+	m[3][1] = -(top + bottom) / dy;
+	m[3][2] = -(zfar + znear) / dz;
 }
 
 inline void Mat4::frustum(float left, float right, float bottom, float top, float znear, float zfar)
 {
-	// TODO
+	float dx = right - left;
+	float dy = top - bottom;
+	float dz = zfar - znear;
+
+	*this = zero;
+	m[0][0] = 2.0f * znear / dx;
+	m[1][1] = 2.0f * znear / dy;
+	m[2][0] = (right + left) / dx;
+	m[2][1] = (top + bottom) / dy;
+	m[2][2] = -(zfar + znear) / dz;
+	m[3][2] = -2.0f * zfar * znear / dz;
+	m[2][3] = -1.0f;
 }
 
 inline void Mat4::perspective(float fov, float aspect, float znear, float zfar)
 {
-	float s = atan(fov / 2.0);
+	float s = 1.0f / tan(fov / 2.0f);
 	float range = znear - zfar;
 
-	*this = identity;
+	*this = zero;
 	m[0][0] = s / aspect;
 	m[1][1] = s;
 	m[2][2] = (znear + zfar) / range;
-	m[3][3] = 2.0 * znear * zfar / range;
-	// TODO continue
+	m[3][2] = 2.0f * znear * zfar / range;
+	m[2][3] = -1.0f;
 }
 
 inline void Mat4::print(FILE *fp)

@@ -15,6 +15,7 @@ namespace gph {
 Mat2 Mat2::identity(1, 0, 0, 1);
 Mat3 Mat3::identity(1, 0, 0, 0, 1, 0, 0, 0, 1);
 Mat4 Mat4::identity(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+Mat4 Mat4::zero(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 void Mat4::rotation(const Quat &q)
 {

@@ -78,6 +78,7 @@ private:
 	float m[4][4];
 
 public:
+	static Mat4 zero;
 	static Mat4 identity;
 
 	inline Mat4();
