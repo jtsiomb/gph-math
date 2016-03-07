@@ -467,6 +467,94 @@ inline void Mat4::rotate(const Quat &q)
 	*this *= mat;
 }
 
+inline void Mat4::pre_translate(float x, float y, float z)
+{
+	Mat4 mat;
+	mat.translation(x, y, z);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_translate(const Vec3 &v)
+{
+	pre_translate(v.x, v.y, v.z);
+}
+
+inline void Mat4::pre_scale(float s)
+{
+	pre_scale(s, s, s);
+}
+
+inline void Mat4::pre_scale(float x, float y, float z)
+{
+	Mat4 mat;
+	mat.scaling(x, y, z);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_scale(const Vec3 &v)
+{
+	pre_scale(v.x, v.y, v.z);
+}
+
+inline void Mat4::pre_rotate_x(float angle)
+{
+	Mat4 mat;
+	mat.rotation_x(angle);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_rotate_y(float angle)
+{
+	Mat4 mat;
+	mat.rotation_y(angle);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_rotate_z(float angle)
+{
+	Mat4 mat;
+	mat.rotation_z(angle);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_rotate_axis(int idx, float angle)
+{
+	Mat4 mat;
+	mat.rotation_axis(idx, angle);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_rotate(float angle, float x, float y, float z)
+{
+	Mat4 mat;
+	mat.rotation(angle, x, y, z);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_rotate(float angle, const Vec3 &axis)
+{
+	pre_rotate(angle, axis.x, axis.y, axis.z);
+}
+
+inline void Mat4::pre_rotate(float x, float y, float z, EulerMode mode)
+{
+	Mat4 mat;
+	mat.rotation(x, y, z, mode);
+	*this = mat * *this;
+}
+
+inline void Mat4::pre_rotate(const Vec3 &euler, EulerMode mode)
+{
+	pre_rotate(euler.x, euler.y, euler.z, mode);
+}
+
+inline void Mat4::pre_rotate(const Quat &q)
+{
+	Mat4 mat;
+	mat.rotation(q);
+	*this = mat * *this;
+}
+
 inline void Mat4::lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up)
 {
 	Vec3 dir = normalize(targ - pos);
@@ -556,11 +644,8 @@ inline void Mat4::print(FILE *fp)
 inline Mat4 operator *(const Mat4 &a, const Mat4 &b)
 {
 	Mat4 res;
-	/* i and j loops are swapped to maintain the illusion of column-major
-	 * elements during multiplication
-	 */
-	for(int j=0; j<4; j++) {
-		for(int i=0; i<4; i++) {
+	for(int i=0; i<4; i++) {
+		for(int j=0; j<4; j++) {
 			res[i][j] = a[i][0] * b[0][j] + a[i][1] * b[1][j] +
 				a[i][2] * b[2][j] + a[i][3] * b[3][j];
 		}
@@ -577,9 +662,6 @@ inline Mat4 &operator *=(Mat4 &a, const Mat4 &b)
 inline Mat4 operator *(const Mat4 &m, float s)
 {
 	Mat4 res;
-	/* i and j loops are swapped to maintain the illusion of column-major
-	 * elements during multiplication
-	 */
 	for(int j=0; j<4; j++) {
 		for(int i=0; i<4; i++) {
 			res[i][j] = m[i][j] * s;

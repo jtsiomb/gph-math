@@ -158,6 +158,29 @@ public:
 	// rotate by quaternion
 	inline void rotate(const Quat &q);
 
+	/* translate/rotate/scale functions construct a temporary
+	 * transformation matrix of the appropriate type, and pre-multiply
+	 * it to this matrix exactly like glTranslate/glRotate/glScale
+	 */
+	inline void pre_translate(float x, float y, float z);
+	inline void pre_translate(const Vec3 &v);
+	inline void pre_scale(float s);
+	inline void pre_scale(float x, float y, float z);
+	inline void pre_scale(const Vec3 &v);
+	// fixed axis rotate
+	inline void pre_rotate_x(float angle);
+	inline void pre_rotate_y(float angle);
+	inline void pre_rotate_z(float angle);
+	inline void pre_rotate_axis(int idx, float angle);
+	// axis-angle rotate
+	inline void pre_rotate(float angle, float x, float y, float z);
+	inline void pre_rotate(float angle, const Vec3 &axis);
+	// euler angles rotate
+	inline void pre_rotate(float x, float y, float z, EulerMode mode = EULER_XYZ);
+	inline void pre_rotate(const Vec3 &euler, EulerMode mode = EULER_XYZ);
+	// rotate by quaternion
+	inline void pre_rotate(const Quat &q);
+
 	// construct a lookat transformation
 	inline void lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up = Vec3(0, 1, 0));
 	// inverse lookat for camera lookat matrix (like gluLookAt)
