@@ -25,20 +25,14 @@ public:
 
 inline Ray operator *(const Ray &r, const Mat4 &m)
 {
-	Mat4 up = m;
-	up[0][3] = up[1][3] = up[2][3] = up[3][0] = up[3][1] = up[3][2] = 0.0;
-	up[3][3] = 1.0;
-
+	Mat4 up = m.upper3x3();
 	return Ray(r.origin * m, r.dir * up);
 }
 
 inline Ray operator *(const Mat4 &m, const Ray &r)
 {
-	Mat4 up = m;
-	up[0][3] = up[1][3] = up[2][3] = up[3][0] = up[3][1] = up[3][2] = 0.0;
-	up[3][3] = 1.0;
-
-	return Ray(m * r.origin, m * r.dir);
+	Mat4 up = m.upper3x3();
+	return Ray(m * r.origin, up * r.dir);
 }
 
 

@@ -7,7 +7,6 @@ it under the terms of the MIT/X11 license. See LICENSE for details.
 If you intend to redistribute parts of the code without the LICENSE file
 replace this paragraph with the full contents of the LICENSE file.
 */
-#include <string.h>
 
 inline Mat2::Mat2()
 {

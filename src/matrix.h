@@ -11,6 +11,7 @@ replace this paragraph with the full contents of the LICENSE file.
 #define GMATH_MATRIX_H_
 
 #include <stdio.h>
+#include <string.h>
 #include "vector.h"
 
 /* NOTE:
