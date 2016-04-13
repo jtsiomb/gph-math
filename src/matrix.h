@@ -10,6 +10,8 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef GMATH_MATRIX_H_
 #define GMATH_MATRIX_H_
 
+#include "config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include "vector.h"
@@ -37,7 +39,7 @@ enum EulerMode {
 	EULER_XZX
 };
 
-class Mat2 {
+class GPH_MATH_API Mat2 {
 private:
 	float m[2][2];
 
@@ -53,7 +55,7 @@ public:
 	inline float determinant() const;
 };
 
-class Mat3 {
+class GPH_MATH_API Mat3 {
 private:
 	float m[3][3];
 
@@ -74,7 +76,7 @@ public:
 };
 
 
-class Mat4 {
+class GPH_MATH_API Mat4 {
 private:
 	float m[4][4];
 
@@ -196,16 +198,16 @@ public:
 	inline void print(FILE *fp = stdout);
 };
 
-inline Mat4 operator *(const Mat4 &a, const Mat4 &b);
-inline Mat4 &operator *=(Mat4 &a, const Mat4 &b);
+inline GPH_MATH_API Mat4 operator *(const Mat4 &a, const Mat4 &b);
+inline GPH_MATH_API Mat4 &operator *=(Mat4 &a, const Mat4 &b);
 
-inline Mat4 operator *(const Mat4 &m, float s);
-inline Mat4 operator *(float s, const Mat4 &m);
+inline GPH_MATH_API Mat4 operator *(const Mat4 &m, float s);
+inline GPH_MATH_API Mat4 operator *(float s, const Mat4 &m);
 
-inline float determinant(const Mat4 &m);
-inline Mat4 transpose(const Mat4 &m);
-inline Mat4 cofactor_matrix(const Mat4 &m);
-inline Mat4 inverse(const Mat4 &m);
+inline GPH_MATH_API float determinant(const Mat4 &m);
+inline GPH_MATH_API Mat4 transpose(const Mat4 &m);
+inline GPH_MATH_API Mat4 cofactor_matrix(const Mat4 &m);
+inline GPH_MATH_API Mat4 inverse(const Mat4 &m);
 
 #include "matrix.inl"
 

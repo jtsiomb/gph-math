@@ -10,12 +10,14 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef QUATERNION_H_
 #define QUATERNION_H_
 
+#include "config.h"
+
 #include "vector.h"
 #include "matrix.h"
 
 namespace gph {
 
-class Quat {
+class GPH_MATH_API Quat {
 public:
 	float x, y, z, w;	// w + xi + yj + zk
 
@@ -37,24 +39,24 @@ public:
 	inline Mat4 calc_matrix() const;
 };
 
-inline Quat operator -(const Quat &q);
-inline Quat operator +(const Quat &a, const Quat &b);
-inline Quat operator -(const Quat &a, const Quat &b);
-inline Quat operator *(const Quat &a, const Quat &b);
+inline GPH_MATH_API Quat operator -(const Quat &q);
+inline GPH_MATH_API Quat operator +(const Quat &a, const Quat &b);
+inline GPH_MATH_API Quat operator -(const Quat &a, const Quat &b);
+inline GPH_MATH_API Quat operator *(const Quat &a, const Quat &b);
 
-inline Quat &operator +=(Quat &a, const Quat &b);
-inline Quat &operator -=(Quat &a, const Quat &b);
-inline Quat &operator *=(Quat &a, const Quat &b);
+inline GPH_MATH_API Quat &operator +=(Quat &a, const Quat &b);
+inline GPH_MATH_API Quat &operator -=(Quat &a, const Quat &b);
+inline GPH_MATH_API Quat &operator *=(Quat &a, const Quat &b);
 
-inline float length(const Quat &q);
-inline float length_sq(const Quat &q);
+inline GPH_MATH_API float length(const Quat &q);
+inline GPH_MATH_API float length_sq(const Quat &q);
 
-inline Quat normalize(const Quat &q);
-inline Quat conjugate(const Quat &q);
-inline Quat inverse(const Quat &q);
+inline GPH_MATH_API Quat normalize(const Quat &q);
+inline GPH_MATH_API Quat conjugate(const Quat &q);
+inline GPH_MATH_API Quat inverse(const Quat &q);
 
-Quat slerp(const Quat &a, const Quat &b, float t);
-inline Quat lerp(const Quat &a, const Quat &b, float t);
+Quat GPH_MATH_API slerp(const Quat &a, const Quat &b, float t);
+inline GPH_MATH_API Quat lerp(const Quat &a, const Quat &b, float t);
 
 #include "quat.inl"
 

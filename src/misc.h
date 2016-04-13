@@ -10,6 +10,8 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef GMATH_MISC_H_
 #define GMATH_MISC_H_
 
+#include "config.h"
+
 #include <math.h>
 #include "vector.h"
 
@@ -19,17 +21,17 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
-inline float deg_to_rad(float deg)
+inline GPH_MATH_API float deg_to_rad(float deg)
 {
 	return M_PI * deg / 180.0f;
 }
 
-inline float rad_to_deg(float rad)
+inline GPH_MATH_API float rad_to_deg(float rad)
 {
 	return 180.0f * rad / M_PI;
 }
 
-inline float smoothstep(float a, float b, float x)
+inline GPH_MATH_API float smoothstep(float a, float b, float x)
 {
 	if(x < a) return 0.0f;
 	if(x >= b) return 1.0f;
@@ -39,16 +41,16 @@ inline float smoothstep(float a, float b, float x)
 }
 
 /* linear interpolation */
-inline float lerp(float a, float b, float t)
+inline GPH_MATH_API float lerp(float a, float b, float t)
 {
 	return a + (b - a) * t;
 }
 
 
 /* stuff defined in misc.cc */
-Vec3 sphrand(float rad);
-void enable_fpexcept();
-void disable_fpexcept();
+GPH_MATH_API Vec3 sphrand(float rad);
+GPH_MATH_API void enable_fpexcept();
+GPH_MATH_API void disable_fpexcept();
 
 }	// namespace gph
 

@@ -10,6 +10,8 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef GMATH_VEC_H_
 #define GMATH_VEC_H_
 
+#include "config.h"
+
 #include <math.h>
 #include "swizzle.h"
 
@@ -25,7 +27,7 @@ class Vec4;
 class Mat4;
 class Quat;
 
-class Vec2 {
+class GPH_MATH_API Vec2 {
 public:
 	float x, y;
 
@@ -40,7 +42,7 @@ public:
 	GPH_VEC2_SWIZZLE
 };
 
-class Vec3 {
+class GPH_MATH_API Vec3 {
 public:
 	float x, y, z;
 
@@ -56,7 +58,7 @@ public:
 };
 
 
-class Vec4 {
+class GPH_MATH_API Vec4 {
 public:
 	float x, y, z, w;
 
@@ -72,139 +74,139 @@ public:
 };
 
 // ---- Vec2 functions ----
-inline Vec2 operator -(const Vec2 &v);
-inline Vec2 operator +(const Vec2 &a, const Vec2 &b);
-inline Vec2 operator -(const Vec2 &a, const Vec2 &b);
-inline Vec2 operator *(const Vec2 &a, const Vec2 &b);
-inline Vec2 operator /(const Vec2 &a, const Vec2 &b);
-inline Vec2 operator *(const Vec2 &v, float s);
-inline Vec2 operator *(float s, const Vec2 &v);
-inline Vec2 operator /(const Vec2 &v, float s);
-inline Vec2 operator /(float s, const Vec2 &v);
-inline Vec2 &operator +=(Vec2 &a, const Vec2 &b);
-inline Vec2 &operator -=(Vec2 &a, const Vec2 &b);
-inline Vec2 &operator *=(Vec2 &a, const Vec2 &b);
-inline Vec2 &operator /=(Vec2 &a, const Vec2 &b);
-inline Vec2 &operator *=(Vec2 &v, float s);
-inline Vec2 &operator /=(Vec2 &v, float s);
+inline GPH_MATH_API Vec2 operator -(const Vec2 &v);
+inline GPH_MATH_API Vec2 operator +(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 operator -(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 operator *(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 operator /(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 operator *(const Vec2 &v, float s);
+inline GPH_MATH_API Vec2 operator *(float s, const Vec2 &v);
+inline GPH_MATH_API Vec2 operator /(const Vec2 &v, float s);
+inline GPH_MATH_API Vec2 operator /(float s, const Vec2 &v);
+inline GPH_MATH_API Vec2 &operator +=(Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 &operator -=(Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 &operator *=(Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 &operator /=(Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 &operator *=(Vec2 &v, float s);
+inline GPH_MATH_API Vec2 &operator /=(Vec2 &v, float s);
 
-Vec2 operator *(const Vec2 &v, const Mat4 &m);
-Vec2 operator *(const Mat4 &m, const Vec2 &v);
+GPH_MATH_API Vec2 operator *(const Vec2 &v, const Mat4 &m);
+GPH_MATH_API Vec2 operator *(const Mat4 &m, const Vec2 &v);
 
-inline bool operator ==(const Vec2 &a, const Vec2 &b);
-inline bool operator !=(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API bool operator ==(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API bool operator !=(const Vec2 &a, const Vec2 &b);
 
-inline float dot(const Vec2 &a, const Vec2 &b);
-inline float length(const Vec2 &v);
-inline float length_sq(const Vec2 &v);
-inline Vec2 normalize(const Vec2 &v);
+inline GPH_MATH_API float dot(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API float length(const Vec2 &v);
+inline GPH_MATH_API float length_sq(const Vec2 &v);
+inline GPH_MATH_API Vec2 normalize(const Vec2 &v);
 
-inline Vec2 reflect(const Vec2 &v, const Vec2 &n);
-inline Vec2 refract(const Vec2 &v, const Vec2 &n, float ior);
-inline Vec2 refract(const Vec2 &v, const Vec2 &n, float from_ior, float to_ior);
+inline GPH_MATH_API Vec2 reflect(const Vec2 &v, const Vec2 &n);
+inline GPH_MATH_API Vec2 refract(const Vec2 &v, const Vec2 &n, float ior);
+inline GPH_MATH_API Vec2 refract(const Vec2 &v, const Vec2 &n, float from_ior, float to_ior);
 
-inline float distance(const Vec2 &a, const Vec2 &b);
-inline float distance_sq(const Vec2 &a, const Vec2 &b);
-inline Vec2 faceforward(const Vec2 &n, const Vec2 &vi, const Vec2 &ng);
+inline GPH_MATH_API float distance(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API float distance_sq(const Vec2 &a, const Vec2 &b);
+inline GPH_MATH_API Vec2 faceforward(const Vec2 &n, const Vec2 &vi, const Vec2 &ng);
 
-inline Vec2 major(const Vec2 &v);
-inline int major_idx(const Vec2 &v);
-inline Vec2 proj_axis(const Vec2 &v, const Vec2 &axis);
+inline GPH_MATH_API Vec2 major(const Vec2 &v);
+inline GPH_MATH_API int major_idx(const Vec2 &v);
+inline GPH_MATH_API Vec2 proj_axis(const Vec2 &v, const Vec2 &axis);
 
-inline Vec2 rotate(const Vec2 &v, float angle);
+inline GPH_MATH_API Vec2 rotate(const Vec2 &v, float angle);
 
 // ---- Vec3 functions ----
-inline Vec3 operator -(const Vec3 &v);
-inline Vec3 operator +(const Vec3 &a, const Vec3 &b);
-inline Vec3 operator -(const Vec3 &a, const Vec3 &b);
-inline Vec3 operator *(const Vec3 &a, const Vec3 &b);
-inline Vec3 operator /(const Vec3 &a, const Vec3 &b);
-inline Vec3 operator *(const Vec3 &v, float s);
-inline Vec3 operator *(float s, const Vec3 &v);
-inline Vec3 operator /(const Vec3 &v, float s);
-inline Vec3 operator /(float s, const Vec3 &v);
-inline Vec3 &operator +=(Vec3 &a, const Vec3 &b);
-inline Vec3 &operator -=(Vec3 &a, const Vec3 &b);
-inline Vec3 &operator *=(Vec3 &a, const Vec3 &b);
-inline Vec3 &operator /=(Vec3 &a, const Vec3 &b);
-inline Vec3 &operator *=(Vec3 &v, float s);
-inline Vec3 &operator /=(Vec3 &v, float s);
+inline GPH_MATH_API Vec3 operator -(const Vec3 &v);
+inline GPH_MATH_API Vec3 operator +(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 operator -(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 operator *(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 operator /(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 operator *(const Vec3 &v, float s);
+inline GPH_MATH_API Vec3 operator *(float s, const Vec3 &v);
+inline GPH_MATH_API Vec3 operator /(const Vec3 &v, float s);
+inline GPH_MATH_API Vec3 operator /(float s, const Vec3 &v);
+inline GPH_MATH_API Vec3 &operator +=(Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 &operator -=(Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 &operator *=(Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 &operator /=(Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 &operator *=(Vec3 &v, float s);
+inline GPH_MATH_API Vec3 &operator /=(Vec3 &v, float s);
 
-Vec3 operator *(const Vec3 &v, const Mat4 &m);
-Vec3 operator *(const Mat4 &m, const Vec3 &v);
+GPH_MATH_API Vec3 operator *(const Vec3 &v, const Mat4 &m);
+GPH_MATH_API Vec3 operator *(const Mat4 &m, const Vec3 &v);
 
-inline bool operator ==(const Vec3 &a, const Vec3 &b);
-inline bool operator !=(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API bool operator ==(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API bool operator !=(const Vec3 &a, const Vec3 &b);
 
-inline float dot(const Vec3 &a, const Vec3 &b);
-inline Vec3 cross(const Vec3 &a, const Vec3 &b);
-inline float length(const Vec3 &v);
-inline float length_sq(const Vec3 &v);
-inline Vec3 normalize(const Vec3 &v);
+inline GPH_MATH_API float dot(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 cross(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API float length(const Vec3 &v);
+inline GPH_MATH_API float length_sq(const Vec3 &v);
+inline GPH_MATH_API Vec3 normalize(const Vec3 &v);
 
-inline Vec3 reflect(const Vec3 &v, const Vec3 &n);
-inline Vec3 refract(const Vec3 &v, const Vec3 &n, float ior);
-inline Vec3 refract(const Vec3 &v, const Vec3 &n, float from_ior, float to_ior);
+inline GPH_MATH_API Vec3 reflect(const Vec3 &v, const Vec3 &n);
+inline GPH_MATH_API Vec3 refract(const Vec3 &v, const Vec3 &n, float ior);
+inline GPH_MATH_API Vec3 refract(const Vec3 &v, const Vec3 &n, float from_ior, float to_ior);
 
-inline float distance(const Vec3 &a, const Vec3 &b);
-inline float distance_sq(const Vec3 &a, const Vec3 &b);
-inline Vec3 faceforward(const Vec3 &n, const Vec3 &vi, const Vec3 &ng);
+inline GPH_MATH_API float distance(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API float distance_sq(const Vec3 &a, const Vec3 &b);
+inline GPH_MATH_API Vec3 faceforward(const Vec3 &n, const Vec3 &vi, const Vec3 &ng);
 
-inline Vec3 major(const Vec3 &v);
-inline int major_idx(const Vec3 &v);
-inline Vec3 proj_axis(const Vec3 &v, const Vec3 &axis);
+inline GPH_MATH_API Vec3 major(const Vec3 &v);
+inline GPH_MATH_API int major_idx(const Vec3 &v);
+inline GPH_MATH_API Vec3 proj_axis(const Vec3 &v, const Vec3 &axis);
 
-inline Vec3 rotate(const Vec3 &v, const Quat &q);
-inline Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
-inline Vec3 rotate(const Vec3 &v, const Vec3 &euler);
+inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Quat &q);
+inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
+inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler);
 
 
 // ---- Vec4 functions ----
-inline Vec4 operator -(const Vec4 &v);
-inline Vec4 operator +(const Vec4 &a, const Vec4 &b);
-inline Vec4 operator -(const Vec4 &a, const Vec4 &b);
-inline Vec4 operator *(const Vec4 &a, const Vec4 &b);
-inline Vec4 operator /(const Vec4 &a, const Vec4 &b);
-inline Vec4 operator *(const Vec4 &v, float s);
-inline Vec4 operator *(float s, const Vec4 &v);
-inline Vec4 operator /(const Vec4 &v, float s);
-inline Vec4 operator /(float s, const Vec4 &v);
-inline Vec4 &operator +=(Vec4 &a, const Vec4 &b);
-inline Vec4 &operator -=(Vec4 &a, const Vec4 &b);
-inline Vec4 &operator *=(Vec4 &a, const Vec4 &b);
-inline Vec4 &operator /=(Vec4 &a, const Vec4 &b);
-inline Vec4 &operator *=(Vec4 &v, float s);
-inline Vec4 &operator /=(Vec4 &v, float s);
+inline GPH_MATH_API Vec4 operator -(const Vec4 &v);
+inline GPH_MATH_API Vec4 operator +(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 operator -(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 operator *(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 operator /(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 operator *(const Vec4 &v, float s);
+inline GPH_MATH_API Vec4 operator *(float s, const Vec4 &v);
+inline GPH_MATH_API Vec4 operator /(const Vec4 &v, float s);
+inline GPH_MATH_API Vec4 operator /(float s, const Vec4 &v);
+inline GPH_MATH_API Vec4 &operator +=(Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 &operator -=(Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 &operator *=(Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 &operator /=(Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 &operator *=(Vec4 &v, float s);
+inline GPH_MATH_API Vec4 &operator /=(Vec4 &v, float s);
 
-Vec4 operator *(const Vec4 &v, const Mat4 &m);
-Vec4 operator *(const Mat4 &m, const Vec4 &v);
+GPH_MATH_API Vec4 operator *(const Vec4 &v, const Mat4 &m);
+GPH_MATH_API Vec4 operator *(const Mat4 &m, const Vec4 &v);
 
-inline bool operator ==(const Vec4 &a, const Vec4 &b);
-inline bool operator !=(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API bool operator ==(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API bool operator !=(const Vec4 &a, const Vec4 &b);
 
-inline float dot(const Vec4 &a, const Vec4 &b);
-inline Vec4 cross(const Vec4 &a, const Vec4 &b, const Vec4 &c);
-inline float length(const Vec4 &v);
-inline float length_sq(const Vec4 &v);
-inline Vec4 normalize(const Vec4 &v);
+inline GPH_MATH_API float dot(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 cross(const Vec4 &a, const Vec4 &b, const Vec4 &c);
+inline GPH_MATH_API float length(const Vec4 &v);
+inline GPH_MATH_API float length_sq(const Vec4 &v);
+inline GPH_MATH_API Vec4 normalize(const Vec4 &v);
 
-inline Vec4 reflect(const Vec4 &v, const Vec4 &n);
-inline Vec4 refract(const Vec4 &v, const Vec4 &n, float ior);
-inline Vec4 refract(const Vec4 &v, const Vec4 &n, float from_ior, float to_ior);
+inline GPH_MATH_API Vec4 reflect(const Vec4 &v, const Vec4 &n);
+inline GPH_MATH_API Vec4 refract(const Vec4 &v, const Vec4 &n, float ior);
+inline GPH_MATH_API Vec4 refract(const Vec4 &v, const Vec4 &n, float from_ior, float to_ior);
 
-inline float distance(const Vec4 &a, const Vec4 &b);
-inline float distance_sq(const Vec4 &a, const Vec4 &b);
-inline Vec4 faceforward(const Vec4 &n, const Vec4 &vi, const Vec4 &ng);
+inline GPH_MATH_API float distance(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API float distance_sq(const Vec4 &a, const Vec4 &b);
+inline GPH_MATH_API Vec4 faceforward(const Vec4 &n, const Vec4 &vi, const Vec4 &ng);
 
-inline Vec4 major(const Vec4 &v);
-inline int major_idx(const Vec4 &v);
-inline Vec4 proj_axis(const Vec4 &v, const Vec4 &axis);
+inline GPH_MATH_API Vec4 major(const Vec4 &v);
+inline GPH_MATH_API int major_idx(const Vec4 &v);
+inline GPH_MATH_API Vec4 proj_axis(const Vec4 &v, const Vec4 &axis);
 
-inline Vec4 rotate(const Vec4 &v, const Quat &q);
-inline Vec4 rotate(const Vec4 &v, const Vec4 &axis, float angle);
-inline Vec4 rotate(const Vec4 &v, const Vec4 &euler);
+inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Quat &q);
+inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec4 &axis, float angle);
+inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec4 &euler);
 
-// include definitions of all the inline functions above
+// include definitions of all the inline GPH_MATH_API functions above
 #include "vector2.inl"
 #include "vector3.inl"
 #include "vector4.inl"

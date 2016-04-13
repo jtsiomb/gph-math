@@ -10,12 +10,14 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef GMATH_RAY_H_
 #define GMATH_RAY_H_
 
+#include "config.h"
+
 #include "vector.h"
 #include "matrix.h"
 
 namespace gph {
 
-class Ray {
+class GPH_MATH_API Ray {
 public:
 	Vec3 origin, dir;
 
@@ -23,30 +25,30 @@ public:
 	Ray(const Vec3 &o, const Vec3 &d) : origin(o), dir(d) {}
 };
 
-inline Ray operator *(const Ray &r, const Mat4 &m)
+inline GPH_MATH_API Ray operator *(const Ray &r, const Mat4 &m)
 {
 	Mat4 up = m.upper3x3();
 	return Ray(r.origin * m, r.dir * up);
 }
 
-inline Ray operator *(const Mat4 &m, const Ray &r)
+inline GPH_MATH_API Ray operator *(const Mat4 &m, const Ray &r)
 {
 	Mat4 up = m.upper3x3();
 	return Ray(m * r.origin, up * r.dir);
 }
 
 
-inline Ray reflect(const Ray &ray, const Vec3 &n)
+inline GPH_MATH_API Ray reflect(const Ray &ray, const Vec3 &n)
 {
 	return Ray(ray.origin, reflect(ray.dir, n));
 }
 
-inline Ray refract(const Ray &ray, const Vec3 &n, float ior)
+inline GPH_MATH_API Ray refract(const Ray &ray, const Vec3 &n, float ior)
 {
 	return Ray(ray.origin, refract(ray.dir, n, ior));
 }
 
-inline Ray refract(const Ray &ray, const Vec3 &n, float from_ior, float to_ior)
+inline GPH_MATH_API Ray refract(const Ray &ray, const Vec3 &n, float from_ior, float to_ior)
 {
 	return Ray(ray.origin, refract(ray.dir, n, from_ior, to_ior));
 }

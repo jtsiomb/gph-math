@@ -10,6 +10,8 @@ replace this paragraph with the full contents of the LICENSE file.
 #ifndef GMATH_H_
 #define GMATH_H_
 
+#include "config.h"
+
 #include "vector.h"
 #include "matrix.h"
 #include "quat.h"
