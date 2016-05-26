@@ -40,10 +40,9 @@ enum EulerMode {
 };
 
 class GPH_MATH_API Mat2 {
-private:
+public:
 	float m[2][2];
 
-public:
 	static Mat2 identity;
 
 	inline Mat2();
@@ -56,10 +55,9 @@ public:
 };
 
 class GPH_MATH_API Mat3 {
-private:
+public:
 	float m[3][3];
 
-public:
 	static Mat3 identity;
 
 	inline Mat3();
@@ -77,10 +75,9 @@ public:
 
 
 class GPH_MATH_API Mat4 {
-private:
+public:
 	float m[4][4];
 
-public:
 	static Mat4 zero;
 	static Mat4 identity;
 

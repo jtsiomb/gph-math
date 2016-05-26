@@ -69,7 +69,7 @@ inline Mat2 Mat3::submatrix(int row, int col) const
 		for(int j=0; j<3; j++) {
 			if(j == col) continue;
 
-			sub[subi][subj++] = m[i][j];
+			sub.m[subi][subj++] = m[i][j];
 		}
 		++subi;
 	}
@@ -136,7 +136,7 @@ inline Mat3 Mat4::submatrix(int row, int col) const
 		for(int j=0; j<4; j++) {
 			if(j == col) continue;
 
-			sub[subi][subj++] = m[i][j];
+			sub.m[subi][subj++] = m[i][j];
 		}
 		++subi;
 	}
@@ -645,8 +645,8 @@ inline Mat4 operator *(const Mat4 &a, const Mat4 &b)
 	Mat4 res;
 	for(int i=0; i<4; i++) {
 		for(int j=0; j<4; j++) {
-			res[i][j] = a[i][0] * b[0][j] + a[i][1] * b[1][j] +
-				a[i][2] * b[2][j] + a[i][3] * b[3][j];
+			res.m[i][j] = a.m[i][0] * b.m[0][j] + a.m[i][1] * b.m[1][j] +
+				a.m[i][2] * b.m[2][j] + a.m[i][3] * b.m[3][j];
 		}
 	}
 	return res;
@@ -663,7 +663,7 @@ inline Mat4 operator *(const Mat4 &m, float s)
 	Mat4 res;
 	for(int j=0; j<4; j++) {
 		for(int i=0; i<4; i++) {
-			res[i][j] = m[i][j] * s;
+			res.m[i][j] = m.m[i][j] * s;
 		}
 	}
 	return res;
@@ -684,7 +684,7 @@ inline Mat4 transpose(const Mat4 &m)
 	Mat4 res;
 	for(int i=0; i<4; i++) {
 		for(int j=0; j<4; j++) {
-			res[i][j] = m[j][i];
+			res.m[i][j] = m.m[j][i];
 		}
 	}
 	return res;
@@ -695,7 +695,7 @@ inline Mat4 cofactor_matrix(const Mat4 &m)
 	Mat4 res;
 	for(int i=0; i<4; i++) {
 		for(int j=0; j<4; j++) {
-			res[i][j] = m.cofactor(i, j);
+			res.m[i][j] = m.cofactor(i, j);
 		}
 	}
 	return res;
