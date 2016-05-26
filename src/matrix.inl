@@ -634,6 +634,8 @@ inline void Mat4::perspective(float fov, float aspect, float znear, float zfar)
 
 inline void Mat4::print(FILE *fp)
 {
+	if(!fp) fp = stdout;
+
 	for(int i=0; i<4; i++) {
 		fprintf(fp, "[ %4.4g %4.4g %4.4g %4.4g ]\n", m[i][0], m[i][1], m[i][2], m[i][3]);
 	}

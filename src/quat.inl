@@ -162,10 +162,11 @@ inline Mat4 Quat::calc_matrix() const
 	float sz = 1.0 - xsq2 - ysq2;
 
 	return Mat4(
-			sx,	2.0 * x * y - 2.0 * w * z, 2.0 * z * x + 2.0 * w * y, 0,
-			2.0 * x * y + 2.0 * w * z, sy, 2.0 * y * z - 2.0 * w * x, 0,
-			2.0 * z * x - 2.0 * w * y, 2.0 * y * z + 2.0 * w * x, sz, 0,
+			sx, 2.0 * x * y + 2.0 * w * z, 2.0 * z * x - 2.0 * w * y, 0,
+			2.0 * x * y - 2.0 * w * z, sy, 2.0 * y * z + 2.0 * w * x, 0,
+			2.0 * z * x + 2.0 * w * y, 2.0 * y * z - 2.0 * w * x, sz, 0,
 			0, 0, 0, 1);
+
 }
 
 inline Quat slerp(const Quat &quat1, const Quat &q2, float t)
