@@ -14,8 +14,8 @@ file(GLOB src "src/*.cc")
 
 add_definitions(-DGPH_NAMESPACE)
 
-add_library(gmath SHARED ${src})
-add_library(gmath-static STATIC ${src})
+add_library(gmath SHARED ${src} ${hdr})
+add_library(gmath-static STATIC ${src} ${hdr})
 
 set_target_properties(gmath PROPERTIES VERSION ${SO_MAJOR}.${SO_MINOR})
 set_target_properties(gmath PROPERTIES SOVERSION ${SO_MAJOR})
