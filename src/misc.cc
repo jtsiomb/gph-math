@@ -18,17 +18,19 @@ Vec3 sphrand(float rad)
 	return Vec3(x, y, z);
 }
 
+}	// namespace gph
+
 #if defined(__APPLE__) && !defined(TARGET_IPHONE)
 #include <xmmintrin.h>
 
-void enable_fpexcept()
+void gph::enable_fpexcept()
 {
 	unsigned int bits;
 	bits = _MM_MASK_INVALID | _MM_MASK_DIV_ZERO | _MM_MASK_OVERFLOW | _MM_MASK_UNDERFLOW;
 	_MM_SET_EXCEPTION_MASK(_MM_GET_EXCEPTION_MASK() & ~bits);
 }
 
-void disable_fpexcept()
+void gph::disable_fpexcept()
 {
 	unsigned int bits;
 	bits = _MM_MASK_INVALID | _MM_MASK_DIV_ZERO | _MM_MASK_OVERFLOW | _MM_MASK_UNDERFLOW;
@@ -41,12 +43,12 @@ void disable_fpexcept()
 #endif
 #include <fenv.h>
 
-void enable_fpexcept()
+void gph::enable_fpexcept()
 {
 	feenableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW | FE_UNDERFLOW);
 }
 
-void disable_fpexcept()
+void gph::disable_fpexcept()
 {
 	fedisableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW | FE_UNDERFLOW);
 }
@@ -64,20 +66,18 @@ unsigned int __cdecl _clearfp();
 unsigned int __cdecl _controlfp(unsigned int, unsigned int);
 #endif
 
-void enable_fpexcept()
+void gph::enable_fpexcept()
 {
 	_clearfp();
 	_controlfp(_controlfp(0, 0) & ~(_EM_INVALID | _EM_ZERODIVIDE | _EM_OVERFLOW), _MCW_EM);
 }
 
-void disable_fpexcept()
+void gph::disable_fpexcept()
 {
 	_clearfp();
 	_controlfp(_controlfp(0, 0) | (_EM_INVALID | _EM_ZERODIVIDE | _EM_OVERFLOW), _MCW_EM);
 }
 #else
-void enable_fpexcept() {}
-void disable_fpexcept() {}
+void gph::enable_fpexcept() {}
+void gph::disable_fpexcept() {}
 #endif
-
-}	// namespace gph
