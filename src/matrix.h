@@ -181,6 +181,10 @@ public:
 	// rotate by quaternion
 	inline void pre_rotate(const Quat &q);
 
+	inline Vec3 get_translation() const;
+	Quat get_rotation() const;
+	inline Vec3 get_scaling() const;
+
 	// construct a lookat transformation
 	inline void lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up = Vec3(0, 1, 0));
 	// inverse lookat for camera lookat matrix (like gluLookAt)

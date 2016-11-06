@@ -554,6 +554,19 @@ inline void Mat4::pre_rotate(const Quat &q)
 	*this = mat * *this;
 }
 
+inline Vec3 Mat4::get_translation() const
+{
+	return Vec3(m[3][0], m[3][1], m[3][2]);
+}
+
+inline Vec3 Mat4::get_scaling() const
+{
+	Vec3 vi = get_column3(0);
+	Vec3 vj = get_column3(1);
+	Vec3 vk = get_column3(2);
+	return Vec3(length(vi), length(vj), length(vk));
+}
+
 inline void Mat4::lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up)
 {
 	Vec3 dir = normalize(targ - pos);
