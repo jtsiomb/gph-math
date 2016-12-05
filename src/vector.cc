@@ -71,7 +71,7 @@ Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle)
 
 Vec3 rotate(const Vec3 &v, const Quat &q)
 {
-	Quat vq = Quat(0.0f, v.x, v.y, v.z);
+	Quat vq = Quat(v.x, v.y, v.z, 0.0f);
 	vq = q * vq * inverse(q);
 	return Vec3(vq.x, vq.y, vq.z);
 }
