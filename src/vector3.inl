@@ -221,19 +221,3 @@ inline Vec3 proj_axis(const Vec3 &v, const Vec3 &axis)
 {
 	return axis * dot(v, axis);
 }
-
-
-inline Vec3 rotate(const Vec3 &v, const Quat &q)
-{
-	return v;	// TODO
-}
-
-inline Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle)
-{
-	return v;	// TODO
-}
-
-inline Vec3 rotate(const Vec3 &v, const Vec3 &euler)
-{
-	return v;	// TODO
-}

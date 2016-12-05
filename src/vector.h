@@ -27,6 +27,21 @@ class Vec4;
 class Mat4;
 class Quat;
 
+enum EulerMode {
+	EULER_XYZ,
+	EULER_XZY,
+	EULER_YXZ,
+	EULER_YZX,
+	EULER_ZXY,
+	EULER_ZYX,
+	EULER_ZXZ,
+	EULER_ZYZ,
+	EULER_YXY,
+	EULER_YZY,
+	EULER_XYX,
+	EULER_XZX
+};
+
 class GPH_MATH_API Vec2 {
 public:
 	float x, y;
@@ -156,9 +171,9 @@ inline GPH_MATH_API Vec3 major(const Vec3 &v);
 inline GPH_MATH_API int major_idx(const Vec3 &v);
 inline GPH_MATH_API Vec3 proj_axis(const Vec3 &v, const Vec3 &axis);
 
-inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Quat &q);
+GPH_MATH_API Vec3 rotate(const Vec3 &v, const Quat &q);
 inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
-inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler);
+inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
 
 
 // ---- Vec4 functions ----
@@ -202,9 +217,9 @@ inline GPH_MATH_API Vec4 major(const Vec4 &v);
 inline GPH_MATH_API int major_idx(const Vec4 &v);
 inline GPH_MATH_API Vec4 proj_axis(const Vec4 &v, const Vec4 &axis);
 
-inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Quat &q);
-inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec4 &axis, float angle);
-inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec4 &euler);
+GPH_MATH_API Vec4 rotate(const Vec4 &v, const Quat &q);
+inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec3 &axis, float angle);
+inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
 
 // include definitions of all the inline GPH_MATH_API functions above
 #include "vector2.inl"

@@ -24,21 +24,6 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
-enum EulerMode {
-	EULER_XYZ,
-	EULER_XZY,
-	EULER_YXZ,
-	EULER_YZX,
-	EULER_ZXY,
-	EULER_ZYX,
-	EULER_ZXZ,
-	EULER_ZYZ,
-	EULER_YXY,
-	EULER_YZY,
-	EULER_XYX,
-	EULER_XZX
-};
-
 class GPH_MATH_API Mat2 {
 public:
 	float m[2][2];

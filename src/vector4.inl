@@ -248,19 +248,3 @@ inline Vec4 proj_axis(const Vec4 &v, const Vec4 &axis)
 {
 	return axis * dot(v, axis);
 }
-
-
-inline Vec4 rotate(const Vec4 &v, const Quat &q)
-{
-	return v;	// TODO
-}
-
-inline Vec4 rotate(const Vec4 &v, const Vec4 &axis, float angle)
-{
-	return v;	// TODO
-}
-
-inline Vec4 rotate(const Vec4 &v, const Vec4 &euler)
-{
-	return v;	// TODO
-}

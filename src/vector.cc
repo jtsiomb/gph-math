@@ -9,6 +9,7 @@ replace this paragraph with the full contents of the LICENSE file.
 */
 #include "vector.h"
 #include "matrix.h"
+#include "quat.h"
 
 namespace gph {
 
@@ -61,6 +62,27 @@ Vec3 operator *(const Mat4 &m, const Vec3 &v)
 	return Vec3(x, y, z);
 }
 
+Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle)
+{
+	Mat4 rmat;
+	rmat.rotation(angle, axis);
+	return rmat * v;
+}
+
+Vec3 rotate(const Vec3 &v, const Quat &q)
+{
+	Quat vq = Quat(0.0f, v.x, v.y, v.z);
+	vq = q * vq * inverse(q);
+	return Vec3(vq.x, vq.y, vq.z);
+}
+
+Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode order)
+{
+	Mat4 rmat;
+	rmat.rotation(euler, order);
+	return rmat * v;
+}
+
 // ---- Vec4 ----
 
 Vec4::Vec4(const Vec3 &v)
@@ -86,5 +108,25 @@ Vec4 operator *(const Mat4 &m, const Vec4 &v)
 	return Vec4(x, y, z, w);
 }
 
+
+Vec4 rotate(const Vec4 &v, const Vec3 &axis, float angle)
+{
+	Mat4 rmat;
+	rmat.rotation(angle, axis);
+	return rmat * v;
+}
+
+Vec4 rotate(const Vec4 &v, const Quat &q)
+{
+	Vec3 rv = rotate(v.xyz(), q);
+	return Vec4(rv.x, rv.y, rv.z, v.w);
+}
+
+Vec4 rotate(const Vec4 &v, const Vec3 &euler, EulerMode order)
+{
+	Mat4 rmat;
+	rmat.rotation(euler, order);
+	return rmat * v;
+}
 
 }	// namespace gph
