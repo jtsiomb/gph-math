@@ -46,6 +46,17 @@ inline GPH_MATH_API float lerp(float a, float b, float t)
 	return a + (b - a) * t;
 }
 
+inline GPH_MATH_API float bezier(float a, float b, float c, float d, float t)
+{
+	float omt, omt3, t3, f;
+	t3 = t * t * t;
+	omt = 1.0f - t;
+	omt3 = omt * omt * omt;
+	f = 3 * t * omt;
+
+	return (a * omt3) + (b * f * omt) + (c * f * t) + (d * t3);
+}
+
 
 /* stuff defined in misc.cc */
 GPH_MATH_API Vec3 sphrand(float rad);

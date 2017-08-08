@@ -130,6 +130,8 @@ inline GPH_MATH_API Vec2 proj_axis(const Vec2 &v, const Vec2 &axis);
 
 inline GPH_MATH_API Vec2 rotate(const Vec2 &v, float angle);
 
+inline GPH_MATH_API Vec2 lerp(const Vec2 &a, const Vec2 &b, float t);
+
 // ---- Vec3 functions ----
 inline GPH_MATH_API Vec3 operator -(const Vec3 &v);
 inline GPH_MATH_API Vec3 operator +(const Vec3 &a, const Vec3 &b);
@@ -175,6 +177,7 @@ GPH_MATH_API Vec3 rotate(const Vec3 &v, const Quat &q);
 inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
 inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
 
+inline GPH_MATH_API Vec3 lerp(const Vec3 &a, const Vec3 &b, float t);
 
 // ---- Vec4 functions ----
 inline GPH_MATH_API Vec4 operator -(const Vec4 &v);
@@ -220,6 +223,8 @@ inline GPH_MATH_API Vec4 proj_axis(const Vec4 &v, const Vec4 &axis);
 GPH_MATH_API Vec4 rotate(const Vec4 &v, const Quat &q);
 inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec3 &axis, float angle);
 inline GPH_MATH_API Vec4 rotate(const Vec4 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
+
+inline GPH_MATH_API Vec4 lerp(const Vec4 &a, const Vec4 &b, float t);
 
 // include definitions of all the inline GPH_MATH_API functions above
 #include "vector2.inl"

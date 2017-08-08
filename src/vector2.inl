@@ -221,3 +221,7 @@ inline Vec2 rotate(const Vec2 &v, float angle)
 	return Vec2(x, y);
 }
 
+inline Vec2 lerp(const Vec2 &a, const Vec2 &b, float t)
+{
+	return a + (b - a) * t;
+}

@@ -16,6 +16,7 @@ replace this paragraph with the full contents of the LICENSE file.
 #include "matrix.h"
 #include "quat.h"
 #include "ray.h"
+#include "noise.h"
 #include "misc.h"
 
 #ifndef GPH_NAMESPACE

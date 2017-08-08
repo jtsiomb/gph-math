@@ -221,3 +221,8 @@ inline Vec3 proj_axis(const Vec3 &v, const Vec3 &axis)
 {
 	return axis * dot(v, axis);
 }
+
+inline Vec3 lerp(const Vec3 &a, const Vec3 &b, float t)
+{
+	return a + (b - a) * t;
+}

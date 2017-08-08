@@ -248,3 +248,8 @@ inline Vec4 proj_axis(const Vec4 &v, const Vec4 &axis)
 {
 	return axis * dot(v, axis);
 }
+
+inline Vec4 lerp(const Vec4 &a, const Vec4 &b, float t)
+{
+	return a + (b - a) * t;
+}
