@@ -59,6 +59,7 @@ inline GPH_MATH_API float bezier(float a, float b, float c, float d, float t)
 
 
 /* stuff defined in misc.cc */
+GPH_MATH_API Vec2 discrand(float rad);
 GPH_MATH_API Vec3 sphrand(float rad);
 GPH_MATH_API void enable_fpexcept();
 GPH_MATH_API void disable_fpexcept();

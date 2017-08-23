@@ -3,6 +3,14 @@
 
 namespace gph {
 
+/* Generates a random vector on the disc */
+Vec2 discrand(float rad)
+{
+	float theta = 2.0 * M_PI * (float)rand() / RAND_MAX;
+	float r = sqrt((float)rand() / RAND_MAX) * rad;
+	return Vec2(cos(theta) * r, sin(theta) * r);
+}
+
 /* Generates a random vector on the surface of a sphere */
 Vec3 sphrand(float rad)
 {
