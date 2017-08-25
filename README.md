@@ -13,7 +13,7 @@ superseding [libvmath](http://github.com/jtsiomb/libvmath), which I've been
 using and evolving since the start of the century.
 
 Inspired by other modern math libraries like glm, gph-math follows the GLSL
-conventions wherever it makes sense, and doesn't clash with my code style,
+conventions wherever it makes sense and doesn't clash with my code style,
 including the very elegant swizzle mechanism for conversions between vector
 types.
 
@@ -23,3 +23,22 @@ Copyright (C) 2016 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software. Feel free to use, modify, and/or redistribute it
 under the terms of the MIT/X11 license. See LICENSE for details.
+
+Build
+-----
+Gph-math has no dependencies, and uses the cmake build system. The best way to
+build gph-math is to use a separate build directory:
+
+  mkdir build
+  cd build
+  cmake ..
+  make
+  sudo make install
+
+To cross-compile for windows with the mingw-w64 compiler, try:
+
+  mkdir build-mingw
+  cd build-mingw
+  cmake -DCMAKE_TOOLCHAIN_FILE=../mingw-toolchain.cmake -DCMAKE_INSTALL_PREFIX=/usr/i686-w64-mingw32 ..
+  make
+  sudo make install
