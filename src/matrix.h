@@ -181,7 +181,7 @@ public:
 	inline void frustum(float left, float right, float bottom, float top, float znear, float zfar);
 	inline void perspective(float fov, float aspect, float znear, float zfar);
 
-	inline void print(FILE *fp = 0);
+	inline void print(FILE *fp = 0) const;
 };
 
 inline GPH_MATH_API Mat4 operator *(const Mat4 &a, const Mat4 &b);

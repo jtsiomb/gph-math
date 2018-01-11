@@ -645,7 +645,7 @@ inline void Mat4::perspective(float fov, float aspect, float znear, float zfar)
 	m[2][3] = -1.0f;
 }
 
-inline void Mat4::print(FILE *fp)
+inline void Mat4::print(FILE *fp) const
 {
 	if(!fp) fp = stdout;
 
