@@ -1,4 +1,7 @@
 #include <stdlib.h>
+#include "matrix.h"
+#include "vector.h"
+#include "ray.h"
 #include "misc.h"
 
 namespace gph {
@@ -89,3 +92,40 @@ void gph::disable_fpexcept()
 void gph::enable_fpexcept() {}
 void gph::disable_fpexcept() {}
 #endif
+
+
+gph::Vec3 gph::unproject(const Vec3 &norm_scrpos, const Mat4 &inv_viewproj)
+{
+	Vec4 in = Vec4(2.0f * norm_scrpos.x - 1.0f, 2.0f * norm_scrpos.y - 1.0f,
+			2.0f * norm_scrpos.z - 1.0f, 1.0f);
+	Vec4 out = inv_viewproj * in;
+	return Vec3(out.x / out.w, out.y / out.w, out.z / out.w);
+}
+
+gph::Vec3 gph::unproject(const Vec3 &norm_scrpos, const Mat4 &viewmat, const Mat4 &projmat)
+{
+	Mat4 xform = inverse(viewmat * projmat);
+	return unproject(norm_scrpos, xform);
+}
+
+void gph::unproject(float winx, float winy, float winz, const float *view, const float *proj,
+		const int *vp, float *objx, float *objy, float *objz)
+{
+	Mat4 viewmat = Mat4(view);
+	Mat4 projmat = Mat4(proj);
+	Mat4 inv_pv = inverse(viewmat * projmat);
+
+	Vec3 in = Vec3((winx - vp[0]) / vp[2], (winy - vp[1]) / vp[3], winz);
+	Vec3 out = unproject(in, inv_pv);
+	*objx = out.x;
+	*objy = out.y;
+	*objz = out.z;
+}
+
+gph::Ray gph::mouse_pick_ray(float nx, float ny, const Mat4 &viewmat, const Mat4 &projmat)
+{
+	Mat4 inv_pv = inverse(viewmat * projmat);
+	Vec3 npos = unproject(Vec3(nx, ny, 0.0f), inv_pv);
+	Vec3 fpos = unproject(Vec3(nx, ny, 1.0f), inv_pv);
+	return Ray(npos, fpos - npos);
+}

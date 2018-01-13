@@ -1,6 +1,6 @@
 /*
 gph-math - math library for graphics programs
-Copyright (C) 2016 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2016-2018 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software. Feel free to use, modify, and/or redistribute
 it under the terms of the MIT/X11 license. See LICENSE for details.
@@ -63,6 +63,13 @@ GPH_MATH_API Vec2 discrand(float rad);
 GPH_MATH_API Vec3 sphrand(float rad);
 GPH_MATH_API void enable_fpexcept();
 GPH_MATH_API void disable_fpexcept();
+
+GPH_MATH_API Vec3 unproject(const Vec3 &norm_scrpos, const Mat4 &inv_viewproj);
+GPH_MATH_API Vec3 unproject(const Vec3 &norm_scrpos, const Mat4 &viewmat, const Mat4 &projmat);
+GPH_MATH_API void unproject(float winx, float winy, float winz, const float *view, const float *proj,
+		const int *vp, float *objx, float *objy, float *objz);
+
+GPH_MATH_API Ray mouse_pick_ray(float nx, float ny, const Mat4 &viewmat, const Mat4 &projmat);
 
 }	// namespace gph
 
