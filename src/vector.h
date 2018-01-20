@@ -1,6 +1,6 @@
 /*
 gph-math - math library for graphics programs
-Copyright (C) 2016 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2016-2018 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software. Feel free to use, modify, and/or redistribute
 it under the terms of the MIT/X11 license. See LICENSE for details.
@@ -14,6 +14,10 @@ replace this paragraph with the full contents of the LICENSE file.
 
 #include <math.h>
 #include "swizzle.h"
+
+#ifdef major
+#undef major
+#endif
 
 namespace gph {
 
@@ -174,8 +178,8 @@ inline GPH_MATH_API int major_idx(const Vec3 &v);
 inline GPH_MATH_API Vec3 proj_axis(const Vec3 &v, const Vec3 &axis);
 
 GPH_MATH_API Vec3 rotate(const Vec3 &v, const Quat &q);
-inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
-inline GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
+GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
+GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
 
 inline GPH_MATH_API Vec3 lerp(const Vec3 &a, const Vec3 &b, float t);
 
