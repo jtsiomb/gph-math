@@ -567,6 +567,25 @@ inline Vec3 Mat4::get_scaling() const
 	return Vec3(length(vi), length(vj), length(vk));
 }
 
+inline Vec4 Mat4::get_frustum_plane(int p) const
+{
+	float plane[4];
+	int idx = p >> 1;
+
+	if((p & 1) == 0) {
+		plane[0] = m[3][0] + m[idx][0];
+		plane[1] = m[3][1] + m[idx][1];
+		plane[2] = m[3][2] + m[idx][2];
+		plane[3] = m[3][3] + m[idx][3];
+	} else {
+		plane[0] = m[3][0] - m[idx][0];
+		plane[1] = m[3][1] - m[idx][1];
+		plane[2] = m[3][2] - m[idx][2];
+		plane[3] = m[3][3] - m[idx][3];
+	}
+	return Vec4(plane[0], plane[1], plane[2], plane[3]);
+}
+
 inline void Mat4::lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up)
 {
 	Vec3 dir = normalize(targ - pos);
@@ -722,4 +741,13 @@ inline Mat4 inverse(const Mat4 &m)
 	if(!det) return Mat4::identity;
 
 	return transpose(cofactor_matrix(m)) * (1.0f / det);
+}
+
+inline Vec4 normalize_plane(const Vec4 &p)
+{
+	float d = sqrt(p.x * p.x + p.y * p.y + p.z * p.z);
+	if(d == 0.0f) return p;
+
+	float s = 1.0f / d;
+	return Vec4(p.x * s, p.y * s, p.z * s, p.w * s);
 }

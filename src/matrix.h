@@ -24,6 +24,11 @@ replace this paragraph with the full contents of the LICENSE file.
 
 namespace gph {
 
+/* argument to Mat4::get_frustum_plane */
+enum {
+	FRUSTUM_LEFT, FRUSTUM_RIGHT, FRUSTUM_BOTTOM, FRUSTUM_TOP, FRUSTUM_NEAR, FRUSTUM_FAR
+};
+
 class GPH_MATH_API Mat2 {
 public:
 	float m[2][2];
@@ -170,6 +175,9 @@ public:
 	Quat get_rotation() const;
 	inline Vec3 get_scaling() const;
 
+	// extract each one of the 6 frustum planes from a projection matrix
+	inline Vec4 get_frustum_plane(int p) const;
+
 	// construct a lookat transformation
 	inline void lookat(const Vec3 &pos, const Vec3 &targ, const Vec3 &up = Vec3(0, 1, 0));
 	// inverse lookat for camera lookat matrix (like gluLookAt)
@@ -194,6 +202,8 @@ inline GPH_MATH_API float determinant(const Mat4 &m);
 inline GPH_MATH_API Mat4 transpose(const Mat4 &m);
 inline GPH_MATH_API Mat4 cofactor_matrix(const Mat4 &m);
 inline GPH_MATH_API Mat4 inverse(const Mat4 &m);
+
+inline GPH_MATH_API Vec4 normalize_plane(const Vec4 &p);
 
 #include "matrix.inl"
 
