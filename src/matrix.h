@@ -1,6 +1,6 @@
 /*
 gph-math - math library for graphics programs
-Copyright (C) 2016 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2016-2018 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software. Feel free to use, modify, and/or redistribute
 it under the terms of the MIT/X11 license. See LICENSE for details.
@@ -188,6 +188,10 @@ public:
 	// construct a perspective projection matrix
 	inline void frustum(float left, float right, float bottom, float top, float znear, float zfar);
 	inline void perspective(float fov, float aspect, float znear, float zfar);
+
+	// construct a mirror matrix about an arbitrary plane
+	inline void mirror(float a, float b, float c, float d);
+	inline void mirror(const Vec3 &n, float d);
 
 	inline void print(FILE *fp = 0) const;
 };

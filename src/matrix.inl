@@ -1,6 +1,6 @@
 /*
 gph-math - math library for graphics programs
-Copyright (C) 2016 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2016-2018 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software. Feel free to use, modify, and/or redistribute
 it under the terms of the MIT/X11 license. See LICENSE for details.
@@ -663,6 +663,30 @@ inline void Mat4::perspective(float fov, float aspect, float znear, float zfar)
 	m[3][2] = 2.0f * znear * zfar / range;
 	m[2][3] = -1.0f;
 }
+
+inline void Mat4::mirror(float a, float b, float c, float d)
+{
+	m[0][0] = 1.0f - 2.0f * a * a;
+	m[1][1] = 1.0f - 2.0f * b * b;
+	m[2][2] = 1.0f - 2.0f * c * c;
+	m[3][3] = 1.0f;
+
+	m[0][1] = m[1][0] = -2.0f * a * b;
+	m[0][2] = m[2][0] = -2.0f * a * c;
+	m[1][2] = m[2][1] = -2.0f * b * c;
+
+	m[3][0] = -2.0f * a * d;
+	m[3][1] = -2.0f * b * d;
+	m[3][2] = -2.0f * c * d;
+
+	m[0][3] = m[1][3] = m[2][2] = 0.0f;
+}
+
+inline void Mat4::mirror(const Vec3 &n, float d)
+{
+	mirror(n.x, n.y, n.z, d);
+}
+
 
 inline void Mat4::print(FILE *fp) const
 {
