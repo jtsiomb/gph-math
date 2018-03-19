@@ -679,7 +679,7 @@ inline void Mat4::mirror(float a, float b, float c, float d)
 	m[3][1] = -2.0f * b * d;
 	m[3][2] = -2.0f * c * d;
 
-	m[0][3] = m[1][3] = m[2][2] = 0.0f;
+	m[0][3] = m[1][3] = m[2][3] = 0.0f;
 }
 
 inline void Mat4::mirror(const Vec3 &n, float d)
