@@ -48,7 +48,7 @@ void gph::disable_fpexcept()
 	_MM_SET_EXCEPTION_MASK(_MM_GET_EXCEPTION_MASK() | bits);
 }
 
-#elif defined(__GNUC__) && !defined(TARGET_IPHONE) && !defined(__MINGW32__)
+#elif defined(__GLIBC__) && !defined(__MINGW32__)
 #ifndef __USE_GNU
 #define __USE_GNU
 #endif
