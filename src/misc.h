@@ -14,6 +14,7 @@ replace this paragraph with the full contents of the LICENSE file.
 
 #include <math.h>
 #include "vector.h"
+#include "ray.h"
 
 #ifndef M_PI
 #define M_PI 3.141592653589793f
@@ -55,6 +56,24 @@ inline GPH_MATH_API float bezier(float a, float b, float c, float d, float t)
 	f = 3 * t * omt;
 
 	return (a * omt3) + (b * f * omt) + (c * f * t) + (d * t3);
+}
+
+inline GPH_MATH_API float bspline(float a, float b, float c, float d, float t)
+{
+	static const Mat4 mat = Mat4(-1, 3, -3, 1, 3, -6, 0, 4, -3, 3, 3, 1, 1, 0, 0, 0);
+	float tsq = t * t;
+	Vec4 qfact = Vec4(tsq * t, tsq, t, 1.0f);
+	Vec4 tmp = mat * Vec4(a, b, c, d) * (1.0f / 6.0f);
+	return dot(tmp, qfact);
+}
+
+inline GPH_MATH_API float spline(float a, float b, float c, float d, float t)
+{
+	static const Mat4 mat = Mat4(-1, 2, -1, 0, 3, -5, 0, 2, -3, 4, 1, 0, 1, -1, 0, 0);
+	float tsq = t * t;
+	Vec4 qfact = Vec4(tsq * t, tsq, t, 1.0f);
+	Vec4 tmp = mat * Vec4(a, b, c, d) * (1.0f / 6.0f);
+	return dot(tmp, qfact);
 }
 
 

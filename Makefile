@@ -12,7 +12,7 @@ libso = libgmath.so.$(so_major).$(so_minor)
 soname = libgmath.so.$(so_major)
 ldname = libgmath.so
 
-CXXFLAGS = -pedantic -Wall -g -O3 -ffast-math
+CXXFLAGS = -pedantic -Wall -g -O3 -ffast-math -fPIC
 LDFLAGS = -lm
 
 shared = -shared -Wl,-soname,$(soname)

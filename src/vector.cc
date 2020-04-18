@@ -10,6 +10,7 @@ replace this paragraph with the full contents of the LICENSE file.
 #include "vector.h"
 #include "matrix.h"
 #include "quat.h"
+#include "misc.h"
 
 namespace gph {
 
@@ -81,6 +82,31 @@ Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode order)
 	Mat4 rmat;
 	rmat.rotation(euler, order);
 	return rmat * v;
+}
+
+
+Vec3 bezier(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &d, float t)
+{
+	float x = bezier(a.x, b.x, c.x, d.x, t);
+	float y = bezier(a.y, b.y, c.y, d.y, t);
+	float z = bezier(a.z, b.z, c.z, d.z, t);
+	return Vec3(x, y, z);
+}
+
+Vec3 bspline(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &d, float t)
+{
+	float x = bspline(a.x, b.x, c.x, d.x, t);
+	float y = bspline(a.y, b.y, c.y, d.y, t);
+	float z = bspline(a.z, b.z, c.z, d.z, t);
+	return Vec3(x, y, z);
+}
+
+Vec3 spline(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &d, float t)
+{
+	float x = spline(a.x, b.x, c.x, d.x, t);
+	float y = spline(a.y, b.y, c.y, d.y, t);
+	float z = spline(a.z, b.z, c.z, d.z, t);
+	return Vec3(x, y, z);
 }
 
 // ---- Vec4 ----

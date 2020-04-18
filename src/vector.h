@@ -182,6 +182,9 @@ GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &axis, float angle);
 GPH_MATH_API Vec3 rotate(const Vec3 &v, const Vec3 &euler, EulerMode mode = EULER_XYZ);
 
 inline GPH_MATH_API Vec3 lerp(const Vec3 &a, const Vec3 &b, float t);
+GPH_MATH_API Vec3 bezier(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &d, float t);
+GPH_MATH_API Vec3 bspline(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &d, float t);
+GPH_MATH_API Vec3 spline(const Vec3 &a, const Vec3 &b, const Vec3 &c, const Vec3 &d, float t);
 
 // ---- Vec4 functions ----
 inline GPH_MATH_API Vec4 operator -(const Vec4 &v);
