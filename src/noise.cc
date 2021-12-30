@@ -172,12 +172,12 @@ float noise(float x, float y, float z)
 	c = lerp(a, b, sy);
 
 	/* interpolate along the bottom slice of the cell */
-	u = dot(grad3[b00 + bz0], Vec3(rx0, ry0, rz1));
-	v = dot(grad3[b10 + bz0], Vec3(rx1, ry0, rz1));
+	u = dot(grad3[b00 + bz1], Vec3(rx0, ry0, rz1));
+	v = dot(grad3[b10 + bz1], Vec3(rx1, ry0, rz1));
 	a = lerp(u, v, sx);
 
-	u = dot(grad3[b01 + bz0], Vec3(rx0, ry1, rz1));
-	v = dot(grad3[b11 + bz0], Vec3(rx1, ry1, rz1));
+	u = dot(grad3[b01 + bz1], Vec3(rx0, ry1, rz1));
+	v = dot(grad3[b11 + bz1], Vec3(rx1, ry1, rz1));
 	b = lerp(u, v, sx);
 
 	d = lerp(a, b, sy);
@@ -284,12 +284,12 @@ float pnoise(float x, float y, float z, int per_x, int per_y, int per_z)
 	c = lerp(a, b, sy);
 
 	/* interpolate along the bottom slice of the cell */
-	u = dot(grad3[b00 + bz0], Vec3(rx0, ry0, rz1));
-	v = dot(grad3[b10 + bz0], Vec3(rx1, ry0, rz1));
+	u = dot(grad3[b00 + bz1], Vec3(rx0, ry0, rz1));
+	v = dot(grad3[b10 + bz1], Vec3(rx1, ry0, rz1));
 	a = lerp(u, v, sx);
 
-	u = dot(grad3[b01 + bz0], Vec3(rx0, ry1, rz1));
-	v = dot(grad3[b11 + bz0], Vec3(rx1, ry1, rz1));
+	u = dot(grad3[b01 + bz1], Vec3(rx0, ry1, rz1));
+	v = dot(grad3[b11 + bz1], Vec3(rx1, ry1, rz1));
 	b = lerp(u, v, sx);
 
 	d = lerp(a, b, sy);
